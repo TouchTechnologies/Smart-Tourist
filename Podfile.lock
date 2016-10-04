@@ -1,0 +1,43 @@
+PODS:
+  - Alamofire (4.0.1)
+  - Crashlytics (3.8.2):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.9)
+  - Harpy (4.0.6)
+  - LCTabBarController (1.3.3)
+  - Nuke (4.0)
+  - ReachabilitySwift (3)
+  - SnapKit (3.0.1)
+  - SVProgressHUD (2.0.3)
+  - SVPullToRefresh (0.4.1)
+  - SwiftyJSON (3.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - Crashlytics
+  - Fabric
+  - Harpy
+  - LCTabBarController
+  - Nuke (~> 4.0)
+  - ReachabilitySwift (~> 3.0)
+  - SnapKit (~> 3.0)
+  - SVProgressHUD
+  - SVPullToRefresh
+  - SwiftyJSON (~> 3.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
+  Fabric: bc5bec42cef4bcf1ee3ce0e218fc518e4b44dfbb
+  Harpy: 04c313691bfb7ae931eed36e0604e25f8e18b0ff
+  LCTabBarController: 9d611fdf2e8e6e78d2322c9b3d8d701a9397b87b
+  Nuke: c738cc70c96febfbc974809c1eb8b3d600b09a6b
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
+
+PODFILE CHECKSUM: f40c9469c06da290e431880178d61e0bb65af13a
+
+COCOAPODS: 1.1.0.rc.2

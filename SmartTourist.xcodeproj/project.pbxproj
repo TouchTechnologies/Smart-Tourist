@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B671BD51DA2573D00265D4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B671BD41DA2573D00265D4D /* AppDelegate.swift */; };
+		3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B671BD61DA2573D00265D4D /* ViewController.swift */; };
+		3B671BDA1DA2573D00265D4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B671BD81DA2573D00265D4D /* Main.storyboard */; };
+		3B671BDC1DA2573D00265D4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B671BDB1DA2573D00265D4D /* Assets.xcassets */; };
+		3B671BDF1DA2573D00265D4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B671BDD1DA2573D00265D4D /* LaunchScreen.storyboard */; };
+		3B7B2C331DA2596B002C4029 /* MainTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C321DA2596B002C4029 /* MainTabbar.swift */; };
+		3B7B2C351DA259D8002C4029 /* tabLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C341DA259D8002C4029 /* tabLists.swift */; };
+		3B7B2C371DA259E7002C4029 /* tabFeeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C361DA259E7002C4029 /* tabFeeds.swift */; };
+		3B7B2C391DA259F7002C4029 /* tabNearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C381DA259F7002C4029 /* tabNearMe.swift */; };
+		3B7B2C3C1DA25A5B002C4029 /* LCTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7B2C3A1DA25A5B002C4029 /* LCTabBarController.framework */; };
+		3B7B2C3D1DA25A5B002C4029 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7B2C3B1DA25A5B002C4029 /* SnapKit.framework */; };
+		3B7B2C441DA25BB8002C4029 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C3F1DA25BB8002C4029 /* Enum.swift */; };
+		3B7B2C451DA25BB8002C4029 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B7B2C411DA25BB8002C4029 /* FontAwesome.otf */; };
+		3B7B2C461DA25BB8002C4029 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C421DA25BB8002C4029 /* FontAwesome.swift */; };
+		3B7B2C471DA25BB8002C4029 /* FontAwesomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C431DA25BB8002C4029 /* FontAwesomeView.swift */; };
+		3B7B2C491DA35FE3002C4029 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C481DA35FE3002C4029 /* extensions.swift */; };
+		866E986EE39C87B83292C66B /* Pods_SmartTourist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3B671BD11DA2573D00265D4D /* SmartTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B671BD41DA2573D00265D4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3B671BD61DA2573D00265D4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3B671BD91DA2573D00265D4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3B671BDB1DA2573D00265D4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B671BDE1DA2573D00265D4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3B671BE01DA2573D00265D4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B7B2C321DA2596B002C4029 /* MainTabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabbar.swift; sourceTree = "<group>"; };
+		3B7B2C341DA259D8002C4029 /* tabLists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabLists.swift; sourceTree = "<group>"; };
+		3B7B2C361DA259E7002C4029 /* tabFeeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabFeeds.swift; sourceTree = "<group>"; };
+		3B7B2C381DA259F7002C4029 /* tabNearMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabNearMe.swift; sourceTree = "<group>"; };
+		3B7B2C3A1DA25A5B002C4029 /* LCTabBarController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LCTabBarController.framework; path = "Pods/../build/Debug-iphoneos/LCTabBarController/LCTabBarController.framework"; sourceTree = "<group>"; };
+		3B7B2C3B1DA25A5B002C4029 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../../../Library/Developer/Xcode-8/DerivedData/SmartTourist-galcyldtjhlnitadiyziljhmxpzo/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
+		3B7B2C3F1DA25BB8002C4029 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		3B7B2C401DA25BB8002C4029 /* FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontAwesome.h; sourceTree = "<group>"; };
+		3B7B2C411DA25BB8002C4029 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		3B7B2C421DA25BB8002C4029 /* FontAwesome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
+		3B7B2C431DA25BB8002C4029 /* FontAwesomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontAwesomeView.swift; sourceTree = "<group>"; };
+		3B7B2C481DA35FE3002C4029 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		45B3A73A420575F43AAB59B7 /* Pods-SmartTourist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartTourist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist.debug.xcconfig"; sourceTree = "<group>"; };
+		7F3E2548D0841282F819B9BF /* Pods-SmartTourist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartTourist.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist.release.xcconfig"; sourceTree = "<group>"; };
+		A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartTourist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B671BCE1DA2573D00265D4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B7B2C3C1DA25A5B002C4029 /* LCTabBarController.framework in Frameworks */,
+				3B7B2C3D1DA25A5B002C4029 /* SnapKit.framework in Frameworks */,
+				866E986EE39C87B83292C66B /* Pods_SmartTourist.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		226F17726668BF534271463D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B7B2C3A1DA25A5B002C4029 /* LCTabBarController.framework */,
+				3B7B2C3B1DA25A5B002C4029 /* SnapKit.framework */,
+				A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B671BC81DA2573D00265D4D = {
+			isa = PBXGroup;
+			children = (
+				3B671BD31DA2573D00265D4D /* SmartTourist */,
+				3B671BD21DA2573D00265D4D /* Products */,
+				DA59C430BA9117EA00C01EEC /* Pods */,
+				226F17726668BF534271463D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3B671BD21DA2573D00265D4D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B671BD11DA2573D00265D4D /* SmartTourist.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B671BD31DA2573D00265D4D /* SmartTourist */ = {
+			isa = PBXGroup;
+			children = (
+				3B7B2C3E1DA25BB0002C4029 /* FontAwesome */,
+				3B7B2C481DA35FE3002C4029 /* extensions.swift */,
+				3B671BD41DA2573D00265D4D /* AppDelegate.swift */,
+				3B7B2C321DA2596B002C4029 /* MainTabbar.swift */,
+				3B7B2C341DA259D8002C4029 /* tabLists.swift */,
+				3B7B2C361DA259E7002C4029 /* tabFeeds.swift */,
+				3B7B2C381DA259F7002C4029 /* tabNearMe.swift */,
+				3B671BD61DA2573D00265D4D /* ViewController.swift */,
+				3B671BD81DA2573D00265D4D /* Main.storyboard */,
+				3B671BDB1DA2573D00265D4D /* Assets.xcassets */,
+				3B671BDD1DA2573D00265D4D /* LaunchScreen.storyboard */,
+				3B671BE01DA2573D00265D4D /* Info.plist */,
+			);
+			path = SmartTourist;
+			sourceTree = "<group>";
+		};
+		3B7B2C3E1DA25BB0002C4029 /* FontAwesome */ = {
+			isa = PBXGroup;
+			children = (
+				3B7B2C3F1DA25BB8002C4029 /* Enum.swift */,
+				3B7B2C401DA25BB8002C4029 /* FontAwesome.h */,
+				3B7B2C411DA25BB8002C4029 /* FontAwesome.otf */,
+				3B7B2C421DA25BB8002C4029 /* FontAwesome.swift */,
+				3B7B2C431DA25BB8002C4029 /* FontAwesomeView.swift */,
+			);
+			name = FontAwesome;
+			sourceTree = "<group>";
+		};
+		DA59C430BA9117EA00C01EEC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				45B3A73A420575F43AAB59B7 /* Pods-SmartTourist.debug.xcconfig */,
+				7F3E2548D0841282F819B9BF /* Pods-SmartTourist.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B671BD01DA2573D00265D4D /* SmartTourist */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B671BE31DA2573D00265D4D /* Build configuration list for PBXNativeTarget "SmartTourist" */;
+			buildPhases = (
+				4969EE035092F943AB470EEF /* [CP] Check Pods Manifest.lock */,
+				3B671BCD1DA2573D00265D4D /* Sources */,
+				3B671BCE1DA2573D00265D4D /* Frameworks */,
+				3B671BCF1DA2573D00265D4D /* Resources */,
+				1142A72FD0AB210C228CBA3F /* [CP] Embed Pods Frameworks */,
+				59F6858224041C7B6B0C857A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmartTourist;
+			productName = SmartTourist;
+			productReference = 3B671BD11DA2573D00265D4D /* SmartTourist.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B671BC91DA2573D00265D4D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Thirawat Phannet";
+				TargetAttributes = {
+					3B671BD01DA2573D00265D4D = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 28WCARLR9T;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3B671BCC1DA2573D00265D4D /* Build configuration list for PBXProject "SmartTourist" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3B671BC81DA2573D00265D4D;
+			productRefGroup = 3B671BD21DA2573D00265D4D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B671BD01DA2573D00265D4D /* SmartTourist */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B671BCF1DA2573D00265D4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B671BDF1DA2573D00265D4D /* LaunchScreen.storyboard in Resources */,
+				3B671BDC1DA2573D00265D4D /* Assets.xcassets in Resources */,
+				3B7B2C451DA25BB8002C4029 /* FontAwesome.otf in Resources */,
+				3B671BDA1DA2573D00265D4D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1142A72FD0AB210C228CBA3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4969EE035092F943AB470EEF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		59F6858224041C7B6B0C857A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B671BCD1DA2573D00265D4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B7B2C371DA259E7002C4029 /* tabFeeds.swift in Sources */,
+				3B7B2C331DA2596B002C4029 /* MainTabbar.swift in Sources */,
+				3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */,
+				3B7B2C391DA259F7002C4029 /* tabNearMe.swift in Sources */,
+				3B7B2C461DA25BB8002C4029 /* FontAwesome.swift in Sources */,
+				3B7B2C491DA35FE3002C4029 /* extensions.swift in Sources */,
+				3B7B2C471DA25BB8002C4029 /* FontAwesomeView.swift in Sources */,
+				3B7B2C441DA25BB8002C4029 /* Enum.swift in Sources */,
+				3B671BD51DA2573D00265D4D /* AppDelegate.swift in Sources */,
+				3B7B2C351DA259D8002C4029 /* tabLists.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3B671BD81DA2573D00265D4D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B671BD91DA2573D00265D4D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3B671BDD1DA2573D00265D4D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B671BDE1DA2573D00265D4D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B671BE11DA2573D00265D4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B671BE21DA2573D00265D4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B671BE41DA2573D00265D4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45B3A73A420575F43AAB59B7 /* Pods-SmartTourist.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 28WCARLR9T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/LCTabBarController",
+				);
+				INFOPLIST_FILE = SmartTourist/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Touchtechnologies.SmartTourist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3B671BE51DA2573D00265D4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F3E2548D0841282F819B9BF /* Pods-SmartTourist.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 28WCARLR9T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/LCTabBarController",
+				);
+				INFOPLIST_FILE = SmartTourist/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Touchtechnologies.SmartTourist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B671BCC1DA2573D00265D4D /* Build configuration list for PBXProject "SmartTourist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B671BE11DA2573D00265D4D /* Debug */,
+				3B671BE21DA2573D00265D4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B671BE31DA2573D00265D4D /* Build configuration list for PBXNativeTarget "SmartTourist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B671BE41DA2573D00265D4D /* Debug */,
+				3B671BE51DA2573D00265D4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3B671BC91DA2573D00265D4D /* Project object */;
+}
