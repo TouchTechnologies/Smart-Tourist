@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3649F9851DA51852001F8FAD /* facebookObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649F9841DA51852001F8FAD /* facebookObj.swift */; };
 		36BF2B791DA4EAFE0009EE98 /* facebookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2B781DA4EAFE0009EE98 /* facebookAPI.swift */; };
 		3B671BD51DA2573D00265D4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B671BD41DA2573D00265D4D /* AppDelegate.swift */; };
 		3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B671BD61DA2573D00265D4D /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3649F9841DA51852001F8FAD /* facebookObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebookObj.swift; sourceTree = "<group>"; };
 		36BF2B781DA4EAFE0009EE98 /* facebookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebookAPI.swift; sourceTree = "<group>"; };
 		3B671BD11DA2573D00265D4D /* SmartTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B671BD41DA2573D00265D4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				36BF2B781DA4EAFE0009EE98 /* facebookAPI.swift */,
+				3649F9841DA51852001F8FAD /* facebookObj.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				3B7B2C491DA35FE3002C4029 /* extensions.swift in Sources */,
 				3B7B2C471DA25BB8002C4029 /* FontAwesomeView.swift in Sources */,
 				3B7B2C441DA25BB8002C4029 /* Enum.swift in Sources */,
+				3649F9851DA51852001F8FAD /* facebookObj.swift in Sources */,
 				3B671BD51DA2573D00265D4D /* AppDelegate.swift in Sources */,
 				3B7B2C351DA259D8002C4029 /* tabLists.swift in Sources */,
 			);
