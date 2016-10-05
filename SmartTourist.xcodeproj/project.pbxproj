@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3649F9851DA51852001F8FAD /* facebookObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649F9841DA51852001F8FAD /* facebookObj.swift */; };
+		36BF2B791DA4EAFE0009EE98 /* facebookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2B781DA4EAFE0009EE98 /* facebookAPI.swift */; };
 		3B671BD51DA2573D00265D4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B671BD41DA2573D00265D4D /* AppDelegate.swift */; };
 		3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B671BD61DA2573D00265D4D /* ViewController.swift */; };
 		3B671BDA1DA2573D00265D4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B671BD81DA2573D00265D4D /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3649F9841DA51852001F8FAD /* facebookObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebookObj.swift; sourceTree = "<group>"; };
+		36BF2B781DA4EAFE0009EE98 /* facebookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebookAPI.swift; sourceTree = "<group>"; };
 		3B671BD11DA2573D00265D4D /* SmartTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B671BD41DA2573D00265D4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B671BD61DA2573D00265D4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +103,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		36BF2B771DA4EAE70009EE98 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				36BF2B781DA4EAFE0009EE98 /* facebookAPI.swift */,
+				3649F9841DA51852001F8FAD /* facebookObj.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		3B671BC81DA2573D00265D4D = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +133,7 @@
 		3B671BD31DA2573D00265D4D /* SmartTourist */ = {
 			isa = PBXGroup;
 			children = (
+				36BF2B771DA4EAE70009EE98 /* API */,
 				3B7B2C3E1DA25BB0002C4029 /* FontAwesome */,
 				3B7B2C481DA35FE3002C4029 /* extensions.swift */,
 				3B671BD41DA2573D00265D4D /* AppDelegate.swift */,
@@ -297,11 +311,13 @@
 				3B7B2C371DA259E7002C4029 /* tabFeeds.swift in Sources */,
 				3B7B2C331DA2596B002C4029 /* MainTabbar.swift in Sources */,
 				3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */,
+				36BF2B791DA4EAFE0009EE98 /* facebookAPI.swift in Sources */,
 				3B7B2C391DA259F7002C4029 /* tabNearMe.swift in Sources */,
 				3B7B2C461DA25BB8002C4029 /* FontAwesome.swift in Sources */,
 				3B7B2C491DA35FE3002C4029 /* extensions.swift in Sources */,
 				3B7B2C471DA25BB8002C4029 /* FontAwesomeView.swift in Sources */,
 				3B7B2C441DA25BB8002C4029 /* Enum.swift in Sources */,
+				3649F9851DA51852001F8FAD /* facebookObj.swift in Sources */,
 				3B671BD51DA2573D00265D4D /* AppDelegate.swift in Sources */,
 				3B7B2C351DA259D8002C4029 /* tabLists.swift in Sources */,
 			);

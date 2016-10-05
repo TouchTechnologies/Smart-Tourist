@@ -17,7 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         GMSServices.provideAPIKey("AIzaSyCq4y83l38iIuQ3ctWd-LSeepSEm05VP-M")
-        
+        let fb = facebookAPI()
+        print("gatPlace")
+        fb.gatPlace(type: "hotel") { data in
+            print("----------------")
+            
+            print(data["data"]?.count)
+        }
         
         return true
     }
