@@ -23,6 +23,13 @@
 		3B7B2C461DA25BB8002C4029 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C421DA25BB8002C4029 /* FontAwesome.swift */; };
 		3B7B2C471DA25BB8002C4029 /* FontAwesomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C431DA25BB8002C4029 /* FontAwesomeView.swift */; };
 		3B7B2C491DA35FE3002C4029 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B2C481DA35FE3002C4029 /* extensions.swift */; };
+		3BE123F81DA4E6B700CE59B6 /* tbViewCell_Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE123F61DA4E6B700CE59B6 /* tbViewCell_Lists.swift */; };
+		3BE123F91DA4E6B700CE59B6 /* tbViewCell_Lists.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BE123F71DA4E6B700CE59B6 /* tbViewCell_Lists.xib */; };
+		3BE123FF1DA505B100CE59B6 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FA1DA505B100CE59B6 /* Alamofire.framework */; };
+		3BE124001DA505B100CE59B6 /* ReachabilitySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FB1DA505B100CE59B6 /* ReachabilitySwift.framework */; };
+		3BE124011DA505B100CE59B6 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FC1DA505B100CE59B6 /* SVProgressHUD.framework */; };
+		3BE124021DA505B100CE59B6 /* SVPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FD1DA505B100CE59B6 /* SVPullToRefresh.framework */; };
+		3BE124031DA505B100CE59B6 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FE1DA505B100CE59B6 /* SwiftyJSON.framework */; };
 		866E986EE39C87B83292C66B /* Pods_SmartTourist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +53,13 @@
 		3B7B2C421DA25BB8002C4029 /* FontAwesome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		3B7B2C431DA25BB8002C4029 /* FontAwesomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontAwesomeView.swift; sourceTree = "<group>"; };
 		3B7B2C481DA35FE3002C4029 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		3BE123F61DA4E6B700CE59B6 /* tbViewCell_Lists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tbViewCell_Lists.swift; sourceTree = "<group>"; };
+		3BE123F71DA4E6B700CE59B6 /* tbViewCell_Lists.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tbViewCell_Lists.xib; sourceTree = "<group>"; };
+		3BE123FA1DA505B100CE59B6 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Library/Developer/Xcode-8/DerivedData/SmartTourist-cceraumvczlyxigbtxuudtrizybk/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		3BE123FB1DA505B100CE59B6 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReachabilitySwift.framework; path = "../../../../Library/Developer/Xcode-8/DerivedData/SmartTourist-cceraumvczlyxigbtxuudtrizybk/Build/Products/Debug-iphonesimulator/ReachabilitySwift/ReachabilitySwift.framework"; sourceTree = "<group>"; };
+		3BE123FC1DA505B100CE59B6 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "../../../../Library/Developer/Xcode-8/DerivedData/SmartTourist-cceraumvczlyxigbtxuudtrizybk/Build/Products/Debug-iphonesimulator/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
+		3BE123FD1DA505B100CE59B6 /* SVPullToRefresh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVPullToRefresh.framework; path = "../../../../Library/Developer/Xcode-8/DerivedData/SmartTourist-cceraumvczlyxigbtxuudtrizybk/Build/Products/Debug-iphonesimulator/SVPullToRefresh/SVPullToRefresh.framework"; sourceTree = "<group>"; };
+		3BE123FE1DA505B100CE59B6 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode-8/DerivedData/SmartTourist-cceraumvczlyxigbtxuudtrizybk/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		45B3A73A420575F43AAB59B7 /* Pods-SmartTourist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartTourist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist.debug.xcconfig"; sourceTree = "<group>"; };
 		7F3E2548D0841282F819B9BF /* Pods-SmartTourist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartTourist.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist.release.xcconfig"; sourceTree = "<group>"; };
 		A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartTourist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +70,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BE123FF1DA505B100CE59B6 /* Alamofire.framework in Frameworks */,
+				3BE124001DA505B100CE59B6 /* ReachabilitySwift.framework in Frameworks */,
+				3BE124011DA505B100CE59B6 /* SVProgressHUD.framework in Frameworks */,
+				3BE124021DA505B100CE59B6 /* SVPullToRefresh.framework in Frameworks */,
+				3BE124031DA505B100CE59B6 /* SwiftyJSON.framework in Frameworks */,
 				3B7B2C3C1DA25A5B002C4029 /* LCTabBarController.framework in Frameworks */,
 				3B7B2C3D1DA25A5B002C4029 /* SnapKit.framework in Frameworks */,
 				866E986EE39C87B83292C66B /* Pods_SmartTourist.framework in Frameworks */,
@@ -68,6 +87,11 @@
 		226F17726668BF534271463D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BE123FA1DA505B100CE59B6 /* Alamofire.framework */,
+				3BE123FB1DA505B100CE59B6 /* ReachabilitySwift.framework */,
+				3BE123FC1DA505B100CE59B6 /* SVProgressHUD.framework */,
+				3BE123FD1DA505B100CE59B6 /* SVPullToRefresh.framework */,
+				3BE123FE1DA505B100CE59B6 /* SwiftyJSON.framework */,
 				3B7B2C3A1DA25A5B002C4029 /* LCTabBarController.framework */,
 				3B7B2C3B1DA25A5B002C4029 /* SnapKit.framework */,
 				A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */,
@@ -104,6 +128,7 @@
 				3B7B2C361DA259E7002C4029 /* tabFeeds.swift */,
 				3B7B2C381DA259F7002C4029 /* tabNearMe.swift */,
 				3B671BD61DA2573D00265D4D /* ViewController.swift */,
+				3BE123F51DA4E08800CE59B6 /* tableviewCell */,
 				3B671BD81DA2573D00265D4D /* Main.storyboard */,
 				3B671BDB1DA2573D00265D4D /* Assets.xcassets */,
 				3B671BDD1DA2573D00265D4D /* LaunchScreen.storyboard */,
@@ -122,6 +147,15 @@
 				3B7B2C431DA25BB8002C4029 /* FontAwesomeView.swift */,
 			);
 			name = FontAwesome;
+			sourceTree = "<group>";
+		};
+		3BE123F51DA4E08800CE59B6 /* tableviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3BE123F61DA4E6B700CE59B6 /* tbViewCell_Lists.swift */,
+				3BE123F71DA4E6B700CE59B6 /* tbViewCell_Lists.xib */,
+			);
+			name = tableviewCell;
 			sourceTree = "<group>";
 		};
 		DA59C430BA9117EA00C01EEC /* Pods */ = {
@@ -198,6 +232,7 @@
 			files = (
 				3B671BDF1DA2573D00265D4D /* LaunchScreen.storyboard in Resources */,
 				3B671BDC1DA2573D00265D4D /* Assets.xcassets in Resources */,
+				3BE123F91DA4E6B700CE59B6 /* tbViewCell_Lists.xib in Resources */,
 				3B7B2C451DA25BB8002C4029 /* FontAwesome.otf in Resources */,
 				3B671BDA1DA2573D00265D4D /* Main.storyboard in Resources */,
 			);
@@ -258,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BE123F81DA4E6B700CE59B6 /* tbViewCell_Lists.swift in Sources */,
 				3B7B2C371DA259E7002C4029 /* tabFeeds.swift in Sources */,
 				3B7B2C331DA2596B002C4029 /* MainTabbar.swift in Sources */,
 				3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */,

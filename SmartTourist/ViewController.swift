@@ -8,8 +8,14 @@
 
 import UIKit
 import GoogleMaps
+import Alamofire
+import SVPullToRefresh
+import SVProgressHUD
+import SwiftyJSON
+import Nuke
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, GMSMapViewDelegate {
     
     // bgView Set
     @IBOutlet weak var bgView_Detail: UIView!
@@ -24,14 +30,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var _viewArrowMenu: UIView!
     @IBOutlet weak var _viewOverlayMenu: UIView!
     
+    // Display Data
+    var _tbDataList = UITableView()
+    
     var _vH = CGFloat()
     var _vW = CGFloat()
     var _vH_min = CGFloat()
     
     var btnItemBarRight = UIBarButtonItem()
     
+    // Data Source
+    var strToken = String()
+    var geoLat = Float32()
+    var geoLng = Float32()
+    var limit = Int()
+    var offset = Int()
+    
+    
+    var dataLists = JSON([:])
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        strToken = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
+        geoLat = 13.752468
+        geoLng = 100.566107
+        limit = 10
+        offset = 0
+        
         // Do any additional setup after loading the view, typically from a nib.
         _vW = self.view.frame.width
         _vH = self.view.frame.height
@@ -39,8 +65,9 @@ class ViewController: UIViewController {
         
         designNav()
         designMenu()
-        
-        //view.bringSubview(toFront: _viewArrowMenu)
+        initTableview()
+        initMapview()
+                //view.bringSubview(toFront: _viewArrowMenu)
         
     }
 
@@ -89,6 +116,9 @@ class ViewController: UIViewController {
     
     func btnTopRightClick(sender:AnyObject) {
         
+        
+  
+        
         imgRight = UIImage.fontAwesomeIconWithName(currentShow == "lists" ? .ListAlt : .Map, textColor: UIColor.gray, size: CGSize(width:30, height:30))
         let imgRight_0 = UIImage.fontAwesomeIconWithName(currentShow == "lists" ? .ListAlt : .Map, textColor: UIColor.clear, size: CGSize(width:30, height:30))
         let btnItemRight = UIButton()
@@ -134,6 +164,113 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    // MARK: - MAP ZONE
+    func initMapview() {
+        
+        // Create a GMSCameraPosition that tells the map to display the
+        // coordinate -33.86,151.20 at zoom level 6.
+        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+        let mapView = GMSMapView.map(withFrame: self._viewForMap.frame, camera: camera)
+        mapView.isMyLocationEnabled = true
+        mapView.delegate = self
+        mapView.animate(toLocation: CLLocationCoordinate2D.init(latitude: 13.7027041734701, longitude: 101.662359125912))
+        mapView.animate(toZoom: 5.3)
+        mapView.isMyLocationEnabled = true
+   
+        
+        self._viewForMap.addSubview(mapView)
+        
+        
+//        // Creates a marker in the center of the map.
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2D(latitude: 13.7027041734701, longitude: 101.662359125912)
+//        marker.title = "Sydney"
+//        marker.snippet = "Australia"
+//        marker.map = mapView
+    }
+    
+    
+    
+    // MARK: - TABLEVIEW ZONE
+    func initTableview() {
+        
+        _tbDataList.frame = _viewForList.frame
+        _tbDataList.dataSource = self
+        _tbDataList.delegate = self
+        _tbDataList.autoresizesSubviews = true
+        _tbDataList.register(UINib(nibName: "tbViewCell_Lists", bundle:nil), forCellReuseIdentifier: "cell")
+        _tbDataList.backgroundColor = UIColor.green
+        
+        _viewForList.addSubview(_tbDataList)
+        
+        
+        SVProgressHUD.setDefaultStyle(.dark)
+        //SVProgressHUD.show()
+        
+        //self.title = "Loading..." // fn.randomString(len: 10) as String
+        
+        self.refreshData()
+        
+        weak var _weakSelf = self
+        self._tbDataList.addPullToRefresh(actionHandler: {
+            //print("add Top")
+            
+            //            self.currentPage = 1
+            //            self.f._filter_set_WithKey("page", andValue: "1")
+            _weakSelf!.refreshData()
+            
+        })
+        
+        
+        self._tbDataList.addInfiniteScrolling(actionHandler: {
+            
+            if(self.dataLists.count > 0){
+                
+                //let _searchFilter:NSDictionary = self.f._filter_get()
+                
+                //let intPage:Int = (_searchFilter.objectForKey("page")?.integerValue)! + 1
+                //print("intPage = \(intPage)")
+                //let strNextPage = String(intPage)
+                //print("strNextPage = \(strNextPage)")
+                //self.v._filter_Update("page", _Value: strNextPage)
+                //self.f._filter_set_WithKey("page", andValue: strNextPage)
+                _weakSelf!.loadMoreData()
+                
+            }else{
+                print("Notfound Data")
+                
+                self._tbDataList.infiniteScrollingView.stopAnimating()
+            }
+            
+        })
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.dataLists.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tbViewCell_Lists
+        
+        cell.setData(data: self.dataLists[indexPath.row])
+        
+        
+//        Nuke.loadImage(with: URL(string: urlLogoImage)!, into: cell.imgLogo)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
 
     // MARK: - DESIGN ZONE
     var imgLeft = UIImage()
@@ -212,9 +349,97 @@ class ViewController: UIViewController {
         
         
         
-       
+        
+        bgView_Detail.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH_min)
         
     }
-
+    
+    
+    // MARK: - LOAD DATA
+    func refreshData() {
+        
+        if self.dataLists.count < 1 {
+            SVProgressHUD.show()
+        }
+        
+        let hds:HTTPHeaders = [:]
+        
+        let strGeo:String = "\(geoLat),\(geoLng)"
+        let strLimit:String = "\(String(limit))"
+        let strOffset:String = "\(String(offset))"
+        
+        let params:Parameters =  [
+            "type":"place",
+            "center":strGeo,
+            "distance":"10000",
+            "access_token":strToken,
+            "q":"hotel",
+            "fields":"name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500)",
+            "limit":strLimit,
+            "offset":strOffset,
+            ]
+        
+                print("params")
+                print(params)
+                print("------")
+        
+        //Alamofire.request("https://parseapi.back4app.com/classes/member", method: .get, parameters: params, encoding: URLEncoding.default, headers: hds)
+        Alamofire.request("https://graph.facebook.com/search", method: .get, parameters: params, encoding: URLEncoding.default, headers: hds)
+            //.validate()
+            .responseJSON(completionHandler: {response in
+                
+                if response.result.isSuccess {
+                    
+                    print("is isSuccess")
+                    
+                    if let res = response.result.value {
+                        
+                        let _json = JSON(res)
+                        
+                        let _lists = _json["data"]
+                        
+                        print("_lists")
+                        print(_lists)
+                        print("------")
+                        
+                        if _lists.count > 0 {
+                            self.dataLists = _lists
+                        }else{
+                            self.dataLists = [:]
+                        }
+                        
+//                        print("self.dataLists")
+//                        print(self.dataLists)
+//                        print("------")
+                        
+                        //self.title = "Total : \(self.dataLists.count)"
+                        
+                        self._tbDataList.reloadData()
+                        
+                    }
+                    
+                    
+                    self._tbDataList.pullToRefreshView.stopAnimating()
+                    self._tbDataList.infiniteScrollingView.stopAnimating()
+                    SVProgressHUD.dismiss()
+                }else{
+                    
+                    print("is not Success")
+                    SVProgressHUD.dismiss()
+                }
+                
+            })
+        
+    }
+    
+    func loadMoreData() {
+        
+        
+        
+        
+    }
+    
+    
+    
 }
 
