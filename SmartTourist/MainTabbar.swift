@@ -11,7 +11,6 @@ import LCTabBarController
 
 class MainTabbar: LCTabBarController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
