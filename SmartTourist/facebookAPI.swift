@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import Alamofire
+class facebookAPI {
+    let test = ""
+    func gatPlace(type:String,completionHandler:([String:AnyObject])->()) {
+        
+    }
+}
