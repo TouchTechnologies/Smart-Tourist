@@ -33,6 +33,7 @@
 		3BE124021DA505B100CE59B6 /* SVPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FD1DA505B100CE59B6 /* SVPullToRefresh.framework */; };
 		3BE124031DA505B100CE59B6 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FE1DA505B100CE59B6 /* SwiftyJSON.framework */; };
 		866E986EE39C87B83292C66B /* Pods_SmartTourist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */; };
+		F38EC2AB1DA5305400A28FCA /* introviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EC2AA1DA5305400A28FCA /* introviewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		45B3A73A420575F43AAB59B7 /* Pods-SmartTourist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartTourist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist.debug.xcconfig"; sourceTree = "<group>"; };
 		7F3E2548D0841282F819B9BF /* Pods-SmartTourist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartTourist.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist.release.xcconfig"; sourceTree = "<group>"; };
 		A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartTourist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F38EC2AA1DA5305400A28FCA /* introviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = introviewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		3B671BD31DA2573D00265D4D /* SmartTourist */ = {
 			isa = PBXGroup;
 			children = (
+				F38EC2AA1DA5305400A28FCA /* introviewVC.swift */,
 				36BF2B771DA4EAE70009EE98 /* API */,
 				3B7B2C3E1DA25BB0002C4029 /* FontAwesome */,
 				3B7B2C481DA35FE3002C4029 /* extensions.swift */,
@@ -309,6 +312,7 @@
 			files = (
 				3BE123F81DA4E6B700CE59B6 /* tbViewCell_Lists.swift in Sources */,
 				3B7B2C371DA259E7002C4029 /* tabFeeds.swift in Sources */,
+				F38EC2AB1DA5305400A28FCA /* introviewVC.swift in Sources */,
 				3B7B2C331DA2596B002C4029 /* MainTabbar.swift in Sources */,
 				3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */,
 				36BF2B791DA4EAFE0009EE98 /* facebookAPI.swift in Sources */,
