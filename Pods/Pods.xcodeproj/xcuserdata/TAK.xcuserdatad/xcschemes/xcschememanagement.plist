@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>EAIntroView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EARestrictedScrollView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Harpy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,27 +67,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1D76BCE08EB69F3D6EADFC2BD3620870</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>242D5A2A41A8F5351CD8C66D786E0466</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4ADC7C7ABBC7F006CA61B54D099130D7</key>
+		<key>4B5277999932AAD8E55FA74AEB57F120</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C6D424FF5E8199FECD7751A5337E675</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>65851EE4B3F7834F04FA4302FCF15C81</key>
+		<key>61F2A6B4D95BBA804AC24FE2FEDC4A90</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,17 +92,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>82137AA0E523D869A6B0CFBA68AFF489</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>82CF2D90F51EE8067A30C6531EDAF598</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>930AB134B1B025E2EA9AE4A60DFCA2B2</key>
+		<key>AB045440E0FF21FA9AA0E0A151C95FDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F25D62D6E03E68B96C32797329C9527E</key>
+		<key>B40851751C21333568163D79125AA365</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D8BF146EAE696DCA97C90C51BE045947</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EFB54207FBC5DCDDC3D1694ADC1BDBED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FCE12457633222424CA8E6579E66ABA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

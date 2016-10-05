@@ -25,6 +25,10 @@ target 'SmartTourist' do
 
     pod 'LCTabBarController'
     pod 'SnapKit', '~> 3.0'
+    
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
 
+    pod 'EAIntroView'
 
 end
