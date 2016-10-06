@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3649F9851DA51852001F8FAD /* facebookObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649F9841DA51852001F8FAD /* facebookObj.swift */; };
 		36BF2B791DA4EAFE0009EE98 /* facebookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2B781DA4EAFE0009EE98 /* facebookAPI.swift */; };
+		3B4006CB1DA6C4B800C9DCCD /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4006CA1DA6C4B800C9DCCD /* DetailVC.swift */; };
+		3B4006CE1DA6C65A00C9DCCD /* tbViewCell_Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4006CC1DA6C65A00C9DCCD /* tbViewCell_Review.swift */; };
+		3B4006CF1DA6C65A00C9DCCD /* tbViewCell_Review.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4006CD1DA6C65A00C9DCCD /* tbViewCell_Review.xib */; };
 		3B671BD51DA2573D00265D4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B671BD41DA2573D00265D4D /* AppDelegate.swift */; };
 		3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B671BD61DA2573D00265D4D /* ViewController.swift */; };
 		3B671BDA1DA2573D00265D4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B671BD81DA2573D00265D4D /* Main.storyboard */; };
@@ -50,6 +53,9 @@
 /* Begin PBXFileReference section */
 		3649F9841DA51852001F8FAD /* facebookObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebookObj.swift; sourceTree = "<group>"; };
 		36BF2B781DA4EAFE0009EE98 /* facebookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebookAPI.swift; sourceTree = "<group>"; };
+		3B4006CA1DA6C4B800C9DCCD /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		3B4006CC1DA6C65A00C9DCCD /* tbViewCell_Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tbViewCell_Review.swift; sourceTree = "<group>"; };
+		3B4006CD1DA6C65A00C9DCCD /* tbViewCell_Review.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tbViewCell_Review.xib; sourceTree = "<group>"; };
 		3B671BD11DA2573D00265D4D /* SmartTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B671BD41DA2573D00265D4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B671BD61DA2573D00265D4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 				3B7B2C361DA259E7002C4029 /* tabFeeds.swift */,
 				3B7B2C381DA259F7002C4029 /* tabNearMe.swift */,
 				3B671BD61DA2573D00265D4D /* ViewController.swift */,
+				3B4006CA1DA6C4B800C9DCCD /* DetailVC.swift */,
 				3BE123F51DA4E08800CE59B6 /* tableviewCell */,
 				3B671BD81DA2573D00265D4D /* Main.storyboard */,
 				3B671BDB1DA2573D00265D4D /* Assets.xcassets */,
@@ -198,6 +205,8 @@
 				3BE123F71DA4E6B700CE59B6 /* tbViewCell_Lists.xib */,
 				3BE1240E1DA6574E00CE59B6 /* CustomInfoWindow.swift */,
 				3BE124101DA6575800CE59B6 /* CustomInfoWindow.xib */,
+				3B4006CC1DA6C65A00C9DCCD /* tbViewCell_Review.swift */,
+				3B4006CD1DA6C65A00C9DCCD /* tbViewCell_Review.xib */,
 			);
 			name = tableviewCell;
 			sourceTree = "<group>";
@@ -300,6 +309,7 @@
 				F38EC2B91DA530A200A28FCA /* intro02.jpg in Resources */,
 				F38EC2B41DA530A200A28FCA /* intro07.jpg in Resources */,
 				F38EC2B71DA530A200A28FCA /* intro04.jpg in Resources */,
+				3B4006CF1DA6C65A00C9DCCD /* tbViewCell_Review.xib in Resources */,
 				F38EC2BA1DA530A200A28FCA /* intro01.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +374,7 @@
 				3BE124071DA63F5B00CE59B6 /* Functions.swift in Sources */,
 				3B7B2C371DA259E7002C4029 /* tabFeeds.swift in Sources */,
 				F38EC2AB1DA5305400A28FCA /* introviewVC.swift in Sources */,
+				3B4006CB1DA6C4B800C9DCCD /* DetailVC.swift in Sources */,
 				3B7B2C331DA2596B002C4029 /* MainTabbar.swift in Sources */,
 				3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */,
 				36BF2B791DA4EAFE0009EE98 /* facebookAPI.swift in Sources */,
@@ -374,6 +385,7 @@
 				3B7B2C441DA25BB8002C4029 /* Enum.swift in Sources */,
 				3649F9851DA51852001F8FAD /* facebookObj.swift in Sources */,
 				3BE1240F1DA6574E00CE59B6 /* CustomInfoWindow.swift in Sources */,
+				3B4006CE1DA6C65A00C9DCCD /* tbViewCell_Review.swift in Sources */,
 				3B671BD51DA2573D00265D4D /* AppDelegate.swift in Sources */,
 				3B7B2C351DA259D8002C4029 /* tabLists.swift in Sources */,
 			);

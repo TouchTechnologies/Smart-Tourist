@@ -370,10 +370,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         return 80
     }
     
+    var currentData = JSON([:])
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        //tableView.deselectRow(at: indexPath, animated: true)
+        
+        print(self.dataLists[indexPath.row])
+        print("---------")
+        
+//        let target : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "stbDetail")
+//        self.present(target, animated: true, completion: nil)
+        
+        
+        let lat:CLLocationDegrees = self.dataLists[indexPath.row]["location"]["latitude"].doubleValue
+        let lng:CLLocationDegrees = self.dataLists[indexPath.row]["location"]["longitude"].doubleValue
+        let myGeo:CLLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
+        let floatDistance = self.api.getDistance(curLocation: myGeo, destLocation: endGeo)
+        let strDistance = String(format: "%.02f", floatDistance)
+        
+        currentData = self.dataLists[indexPath.row]
+        currentData["distanceKM"] = JSON(strDistance)
+        performSegue(withIdentifier: "toDetail", sender: self)
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let target = segue.destination as! DetailVC
+        target.itemData = currentData
+        
+        //present(target, animated: true, completion: nil)
+    }
     
 
     // MARK: - DESIGN ZONE
@@ -861,6 +888,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                     let VC1 : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "introviewvc")
                     
                     self.present(VC1, animated: true, completion: nil)
+                    
                 }
             }
         }

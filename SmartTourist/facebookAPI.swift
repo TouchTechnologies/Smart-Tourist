@@ -59,7 +59,7 @@ class facebookAPI {
     }
     func getTagedData(ID:String,completionHandler:@escaping ([String:AnyObject])->()){
         let parameters: Parameters = ["access_token":access_token,
-                                      "fields"      : "message,created_time,id,name,picture"
+                                      "fields": "message,created_time,id,name,picture"
                                      ]
         
         // All three of these calls are equivalent
@@ -82,7 +82,7 @@ class facebookAPI {
     }
     func getDataByID(ID:String,completionHandler:@escaping ([String:AnyObject])->()) {
         let parameters: Parameters = ["access_token":access_token,
-                                      "fields"      : "name,id,picture.height(500),about,category_list"
+                                      "fields": "name,id,picture.height(500),about,category_list,cover"
                                      ]
         // All three of these calls are equivalent
         Alamofire.request("\(apiURL)/\(ID)", parameters: parameters).responseJSON{
