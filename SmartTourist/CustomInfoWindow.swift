@@ -8,6 +8,7 @@
 
 import UIKit
 import Nuke
+import MapKit
 
 class CustomInfoWindow: UIView {
 
@@ -19,6 +20,11 @@ class CustomInfoWindow: UIView {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubtitle: UILabel!
     @IBOutlet weak var lblDistant: UILabel!
+    
+    var latitude:Double = 0.0
+    var longitude:Double = 0.0
+    var name = ""
+    
     
     
     
@@ -48,7 +54,9 @@ class CustomInfoWindow: UIView {
         let itemName = data["itemName"] as! String?
         let itemCheckins = data["itemCheckins"] as! String?
         let itemFanCount = data["itemFanCount"] as! String?
-        
+        latitude = (data["latitude"] as! Double?)!
+        longitude = (data["longitude"] as! Double?)!
+        name = itemName!
         //let itemType = data["itemType"] as! String?
         let itemLogo:UIImage = data["itemLogo"] as! UIImage
 

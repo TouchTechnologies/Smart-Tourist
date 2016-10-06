@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import MapKit
 import Alamofire
 import SVPullToRefresh
 import SVProgressHUD
@@ -298,8 +299,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         
-        
-        print("xxx")
+        print("name \(marker.title)")
+        let coordinate = CLLocationCoordinate2DMake(marker.position.latitude,marker.position.longitude)
+        //create MKMapItem out of coordinates
+        let placeMark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
+        let destination = MKMapItem(placemark: placeMark)
+        destination.name = marker.title
+        destination.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
     
     
@@ -640,6 +646,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                                     "itemSubtitle": itemSubtitle as AnyObject,
                                     "itemFanCount": itemFanCount as AnyObject,
                                     "itemCheckins": itemCheckins as AnyObject,
+                                    "latitude":lat as AnyObject,
+                                    "longitude":lng as AnyObject,
                                     "itemDistant": "\(strDistance) km." as AnyObject,
                                     "itemLogo": UIImage(),
                                     ]
