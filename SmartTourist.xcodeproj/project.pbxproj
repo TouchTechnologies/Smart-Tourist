@@ -33,6 +33,14 @@
 		3BE124021DA505B100CE59B6 /* SVPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FD1DA505B100CE59B6 /* SVPullToRefresh.framework */; };
 		3BE124031DA505B100CE59B6 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE123FE1DA505B100CE59B6 /* SwiftyJSON.framework */; };
 		866E986EE39C87B83292C66B /* Pods_SmartTourist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */; };
+		F38EC2AB1DA5305400A28FCA /* introviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38EC2AA1DA5305400A28FCA /* introviewVC.swift */; };
+		F38EC2B41DA530A200A28FCA /* intro07.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F38EC2AD1DA530A200A28FCA /* intro07.jpg */; };
+		F38EC2B51DA530A200A28FCA /* intro06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F38EC2AE1DA530A200A28FCA /* intro06.jpg */; };
+		F38EC2B61DA530A200A28FCA /* intro05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F38EC2AF1DA530A200A28FCA /* intro05.jpg */; };
+		F38EC2B71DA530A200A28FCA /* intro04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F38EC2B01DA530A200A28FCA /* intro04.jpg */; };
+		F38EC2B81DA530A200A28FCA /* intro03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F38EC2B11DA530A200A28FCA /* intro03.jpg */; };
+		F38EC2B91DA530A200A28FCA /* intro02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F38EC2B21DA530A200A28FCA /* intro02.jpg */; };
+		F38EC2BA1DA530A200A28FCA /* intro01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F38EC2B31DA530A200A28FCA /* intro01.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +75,14 @@
 		45B3A73A420575F43AAB59B7 /* Pods-SmartTourist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartTourist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist.debug.xcconfig"; sourceTree = "<group>"; };
 		7F3E2548D0841282F819B9BF /* Pods-SmartTourist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartTourist.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartTourist/Pods-SmartTourist.release.xcconfig"; sourceTree = "<group>"; };
 		A1D7373E3E947313F3D52130 /* Pods_SmartTourist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartTourist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F38EC2AA1DA5305400A28FCA /* introviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = introviewVC.swift; sourceTree = "<group>"; };
+		F38EC2AD1DA530A200A28FCA /* intro07.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = intro07.jpg; path = images/intro07.jpg; sourceTree = "<group>"; };
+		F38EC2AE1DA530A200A28FCA /* intro06.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = intro06.jpg; path = images/intro06.jpg; sourceTree = "<group>"; };
+		F38EC2AF1DA530A200A28FCA /* intro05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = intro05.jpg; path = images/intro05.jpg; sourceTree = "<group>"; };
+		F38EC2B01DA530A200A28FCA /* intro04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = intro04.jpg; path = images/intro04.jpg; sourceTree = "<group>"; };
+		F38EC2B11DA530A200A28FCA /* intro03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = intro03.jpg; path = images/intro03.jpg; sourceTree = "<group>"; };
+		F38EC2B21DA530A200A28FCA /* intro02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = intro02.jpg; path = images/intro02.jpg; sourceTree = "<group>"; };
+		F38EC2B31DA530A200A28FCA /* intro01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = intro01.jpg; path = images/intro01.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,10 +149,12 @@
 		3B671BD31DA2573D00265D4D /* SmartTourist */ = {
 			isa = PBXGroup;
 			children = (
+				F38EC2AC1DA5309500A28FCA /* images */,
 				36BF2B771DA4EAE70009EE98 /* API */,
 				3B7B2C3E1DA25BB0002C4029 /* FontAwesome */,
 				3B7B2C481DA35FE3002C4029 /* extensions.swift */,
 				3B671BD41DA2573D00265D4D /* AppDelegate.swift */,
+				F38EC2AA1DA5305400A28FCA /* introviewVC.swift */,
 				3B7B2C321DA2596B002C4029 /* MainTabbar.swift */,
 				3B7B2C341DA259D8002C4029 /* tabLists.swift */,
 				3B7B2C361DA259E7002C4029 /* tabFeeds.swift */,
@@ -179,6 +197,20 @@
 				7F3E2548D0841282F819B9BF /* Pods-SmartTourist.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F38EC2AC1DA5309500A28FCA /* images */ = {
+			isa = PBXGroup;
+			children = (
+				F38EC2AD1DA530A200A28FCA /* intro07.jpg */,
+				F38EC2AE1DA530A200A28FCA /* intro06.jpg */,
+				F38EC2AF1DA530A200A28FCA /* intro05.jpg */,
+				F38EC2B01DA530A200A28FCA /* intro04.jpg */,
+				F38EC2B11DA530A200A28FCA /* intro03.jpg */,
+				F38EC2B21DA530A200A28FCA /* intro02.jpg */,
+				F38EC2B31DA530A200A28FCA /* intro01.jpg */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,8 +279,15 @@
 				3B671BDF1DA2573D00265D4D /* LaunchScreen.storyboard in Resources */,
 				3B671BDC1DA2573D00265D4D /* Assets.xcassets in Resources */,
 				3BE123F91DA4E6B700CE59B6 /* tbViewCell_Lists.xib in Resources */,
+				F38EC2B61DA530A200A28FCA /* intro05.jpg in Resources */,
 				3B7B2C451DA25BB8002C4029 /* FontAwesome.otf in Resources */,
+				F38EC2B51DA530A200A28FCA /* intro06.jpg in Resources */,
 				3B671BDA1DA2573D00265D4D /* Main.storyboard in Resources */,
+				F38EC2B81DA530A200A28FCA /* intro03.jpg in Resources */,
+				F38EC2B91DA530A200A28FCA /* intro02.jpg in Resources */,
+				F38EC2B41DA530A200A28FCA /* intro07.jpg in Resources */,
+				F38EC2B71DA530A200A28FCA /* intro04.jpg in Resources */,
+				F38EC2BA1DA530A200A28FCA /* intro01.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +348,7 @@
 			files = (
 				3BE123F81DA4E6B700CE59B6 /* tbViewCell_Lists.swift in Sources */,
 				3B7B2C371DA259E7002C4029 /* tabFeeds.swift in Sources */,
+				F38EC2AB1DA5305400A28FCA /* introviewVC.swift in Sources */,
 				3B7B2C331DA2596B002C4029 /* MainTabbar.swift in Sources */,
 				3B671BD71DA2573D00265D4D /* ViewController.swift in Sources */,
 				36BF2B791DA4EAFE0009EE98 /* facebookAPI.swift in Sources */,
