@@ -58,7 +58,7 @@ class tbViewCell_Lists: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setData(data: JSON) {
+    func setData(data:[String : AnyObject]) {
         
 //        let objData = data
         
@@ -73,25 +73,25 @@ class tbViewCell_Lists: UITableViewCell {
         DispatchQueue.global(qos: .background).async {
             
             DispatchQueue.main.async {
-                self.lblTitle.text = data["name"].stringValue
-                self.lblSubtitle.text = data["category"].stringValue
+                self.lblTitle.text = (data["name"] as! String)
+                self.lblSubtitle.text = (data["category"] as! String)
                 
-                self.lblLike.text = Int(data["fan_count"].stringValue)?.asFomatter()
-                self.lblCheckin.text = Int(data["checkins"].stringValue)?.asFomatter()
+                self.lblLike.text = (data["fan_count"] as! String)
+                self.lblCheckin.text = String(data["checkins"] as! Int)
                 
                 
-                let lat:CLLocationDegrees = data["location"]["latitude"].doubleValue
-                let lng:CLLocationDegrees = data["location"]["longitude"].doubleValue
+//                let lat:CLLocationDegrees = data["location"]["latitude"].doubleValue
+//                let lng:CLLocationDegrees = data["location"]["longitude"].doubleValue
+//                
+//                //        print("lat,lng ---- > > >")
+//                //        print("lat:\(lat) / lng:\(lng)")
+//                
+//                let myGeo:CLLocation = CLLocation(latitude: 13.8906948, longitude: 100.5690317)
+//                let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
+//                let floatDistance = self.api.getDistance(curLocation: myGeo, destLocation: endGeo)
                 
-                //        print("lat,lng ---- > > >")
-                //        print("lat:\(lat) / lng:\(lng)")
-                
-                let myGeo:CLLocation = CLLocation(latitude: 13.8906948, longitude: 100.5690317)
-                let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
-                let floatDistance = self.api.getDistance(curLocation: myGeo, destLocation: endGeo)
-                
-                let strDistance = String(format: "%.02f", floatDistance)
-                self.lblKM.text =  String("\(strDistance) km.")
+//                let strDistance = String(format: "%.02f", floatDistance)
+                self.lblKM.text =  String("\((data["distance"]) as! String) km.")
                 
                 
                 
@@ -106,7 +106,7 @@ class tbViewCell_Lists: UITableViewCell {
                 
                 //
                 
-                let urlLogoImage = data["picture"]["data"]["url"].stringValue
+                let urlLogoImage = (data["picture"] as! String)
                 
 
                 Nuke.loadImage(with: URL(string: urlLogoImage)!, into: self.imgLogo)

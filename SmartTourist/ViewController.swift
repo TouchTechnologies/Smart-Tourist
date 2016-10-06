@@ -66,6 +66,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     var dataLists = JSON([:])
     var _dataLists =  [String:AnyObject]()
     var _dataListsAR:NSMutableArray = []
+    var _dataSortAR:NSMutableArray = []
 //    var dataLists:NSMutableArray = []
     
     
@@ -361,7 +362,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
 //        print("Cell4Row")
 //        print(JSON(self.dataLists[indexPath.row]))
         
-        cell.setData(data: self.dataLists[indexPath.row])
+//        cell.setData(data: self.dataLists[indexPath.row])
+        cell.setData(data: self._dataListsAR[indexPath.row] as! [String : AnyObject])
         
 //        Nuke.loadImage(with: URL(string: urlLogoImage)!, into: cell.imgLogo)
         
@@ -542,19 +544,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                     if let res = response.result.value {
                         
                         let _json = JSON(res)
-                        
-                        
-                        let fbobj = facebookObj()
+                    
                         
                         let _lists = _json["data"]
+                        self._dataListsAR.removeAllObjects()
                         let myGeo:CLLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
                         for item in _lists.arrayValue {
-                            print("ITEM : \(item)")
-                            fbobj.Name = String(describing: item["name"])
                             self._dataLists["name"] = String(item["name"].stringValue) as AnyObject?
                             self._dataLists["category"] = String(item["category"].stringValue) as AnyObject?
                             self._dataLists["fan_count"] = String(item["fan_count"].stringValue) as AnyObject?
-                            self._dataLists["checkins"] = String(item["checkins"].stringValue) as AnyObject?
+                            
+                            let strCheckins = String(format: "%d", item["checkins"].intValue)
+//                            self._dataLists["checkins"] = String(item["checkins"].stringValue) as AnyObject?
+                            
+                            self._dataLists["checkins"] = item["checkins"].intValue as AnyObject?
                             self._dataLists["picture"] = String(item["picture"]["data"]["url"].stringValue) as AnyObject?
                             
                             let lat:CLLocationDegrees = item["location"]["latitude"].doubleValue
@@ -567,7 +570,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                             
                             self._dataListsAR.add(self._dataLists)
                         }
-                        print("daaaaaaaaaaaaaa : \(self._dataListsAR)")
+                
+                        
+//                        let sortedArray = self._dataListsAR
+//                        let firstDescriptor = NSSortDescriptor(key: "distance", ascending: true)
+//                        let sortDescriptors = [firstDescriptor]
+//                        let sortData = sortedArray.sortedArray(using: sortDescriptors)
+//                    
+//                        self._dataListsAR.removeAllObjects()
+//                        self._dataListsAR.addObjects(from: sortData)
+                    
 //print("_lists")
 //print(_lists)
 //print("------")
@@ -580,9 +592,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                                 //let jsonItem = JSON(item)
                                 //let jsonItem = item
                                 //                                print("jsonItem ---- > > >")
-                                print(index)
-                                print(jsonItem)
-                                print("------")
+//                                print(index)
+//                                print(jsonItem)
+//                                print("------")
                                 
                                 guard let urlLogoImage:String = String(jsonItem["picture"]["data"]["url"].stringValue) else {
                                     return
@@ -960,20 +972,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     @IBAction func btnSortDistane_Click(_ sender: AnyObject) {
         
         /////////////////// SORT /////////////////////
+        print("btnSortDistane_Click")
+        
+        let sortedArray = self._dataListsAR
+        let firstDescriptor = NSSortDescriptor(key: "distance", ascending: true)
+        let sortDescriptors = [firstDescriptor]
+        let sortData = sortedArray.sortedArray(using: sortDescriptors)
+        self._dataListsAR.removeAllObjects()
+        self._dataListsAR.addObjects(from: sortData)
+        
+        print(self._dataListsAR)
         page = 0
         _tbDataList.showsInfiniteScrolling = true
-        SVProgressHUD.show()
-        refreshData()
+//        SVProgressHUD.show()
+        
+        _tbDataList.reloadData()
+//        refreshData()
         btnTopLeftClick2(sender: UIButton())
         
     }
     @IBAction func btnSortPopular_Click(_ sender: AnyObject) {
         
         /////////////////// SORT /////////////////////
+        print("btnSortPopular_Click")
+        let sortedArray = self._dataListsAR
+        let firstDescriptor = NSSortDescriptor(key: "checkins", ascending: false)
+        let sortDescriptors = [firstDescriptor]
+        let sortData = sortedArray.sortedArray(using: sortDescriptors)
+        self._dataListsAR.removeAllObjects()
+        print("before \(self._dataListsAR)")
+        self._dataListsAR.addObjects(from: sortData)
+        print("after\(self._dataListsAR)")
         page = 0
         _tbDataList.showsInfiniteScrolling = true
-        SVProgressHUD.show()
-        refreshData()
+//        SVProgressHUD.show()
+        _tbDataList.reloadData()
+//        refreshData()
         btnTopLeftClick2(sender: UIButton())
         
     }
