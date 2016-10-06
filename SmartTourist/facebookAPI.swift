@@ -8,7 +8,8 @@
 
 import Foundation
 import Alamofire
-
+//import MapKit
+import CoreLocation
 class facebookAPI {
     let apiURL = "https://graph.facebook.com"
     let fbObj = facebookObj()
@@ -16,13 +17,13 @@ class facebookAPI {
     let access_token = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
     
     
-    func gatPlace(type:String,page:Int,completionHandler:@escaping ([String:AnyObject])->()) {
+    func gatPlace(curLat:String,curLong:String,type:String,page:Int,completionHandler:@escaping ([String:AnyObject])->()) {
 
         let offset = page*limit
         
         let parameters: Parameters = ["q":type,
                                       "type": "place",
-                                      "center":"13.752468,100.566107",
+                                      "center":"\(curLat),\(curLong)",
                                       "access_token":access_token,
                                       "fields": "name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500)",
                                       "distance":"10000",
@@ -109,5 +110,19 @@ class facebookAPI {
             }
             
         }
+    }
+//    func getDistance(curLat:Double,curLong:Double,destLat:Double,destLong:Double) -> Double {
+    func getDistance(curLocation:CLLocation,destLocation:CLLocation) -> Double {
+//        let curLat = 13.752468
+//        let curLong = 100.566107
+//        let destLat = 13.7037469
+//        let destLong = 100.4495952
+//        let curLocation:CLLocation = CLLocation(latitude: curLat, longitude: curLong)
+//        let destLocation:CLLocation = CLLocation(latitude: destLat, longitude: destLong)
+        
+        let distance = destLocation.distance(from: curLocation)/1000
+        
+        
+        return Double(distance)
     }
 }
