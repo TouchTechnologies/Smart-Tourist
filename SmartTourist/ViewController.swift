@@ -59,6 +59,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     var searchType = ""
     
     var dataLists = JSON([:])
+    var _dataLists =  [String:AnyObject]()
+    var _dataListsAR:NSMutableArray = []
 //    var dataLists:NSMutableArray = []
     
     
@@ -73,7 +75,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         strToken = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
         
         
-        limit = 10
+        limit = 20
         page = 0
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -457,8 +459,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         
                         let _json = JSON(res)
                         
-                        let _lists = _json["data"]
                         
+                        let fbobj = facebookObj()
+                        
+                        let _lists = _json["data"]
+                        let myGeo:CLLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+                        for item in _lists.arrayValue {
+                            print("ITEM : \(item)")
+                            fbobj.Name = String(describing: item["name"])
+                            self._dataLists["name"] = String(item["name"].stringValue) as AnyObject?
+                            self._dataLists["category"] = String(item["category"].stringValue) as AnyObject?
+                            self._dataLists["fan_count"] = String(item["fan_count"].stringValue) as AnyObject?
+                            self._dataLists["checkins"] = String(item["checkins"].stringValue) as AnyObject?
+                            self._dataLists["picture"] = String(item["picture"]["data"]["url"].stringValue) as AnyObject?
+                            
+                            let lat:CLLocationDegrees = item["location"]["latitude"].doubleValue
+                            let lng:CLLocationDegrees = item["location"]["longitude"].doubleValue
+                            let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
+                            let floatDistance = self.api.getDistance(curLocation: myGeo, destLocation: endGeo)
+                            let strDistance = String(format: "%.02f", floatDistance)
+                            
+                            self._dataLists["distance"] = strDistance as AnyObject?
+                            
+                            self._dataListsAR.add(self._dataLists)
+                        }
+                        print("daaaaaaaaaaaaaa : \(self._dataListsAR)")
 //print("_lists")
 //print(_lists)
 //print("------")
