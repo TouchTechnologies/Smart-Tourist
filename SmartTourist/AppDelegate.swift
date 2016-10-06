@@ -15,8 +15,8 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
     var window: UIWindow?
     var locationManager:CLLocationManager!
-    var latitude:Double?
-    var longitude:Double?
+    var latitude:Double = 13.8906948
+    var longitude:Double = 100.5690317
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         print("distance: \(distance) km.")
         
 //        getInterfaces()
-        determineMyCurrentLocation()
+        
         
         return true
     }
@@ -92,33 +92,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         return true
     }
     
-    func determineMyCurrentLocation() {
-        print("determineMyCurrentLocation")
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-            //locationManager.startUpdatingHeading()
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation:CLLocation = locations[0] as CLLocation
-        manager.stopUpdatingLocation()
-        
-        latitude = userLocation.coordinate.latitude
-        longitude = userLocation.coordinate.longitude
-        print("user latitude = \(userLocation.coordinate.latitude)")
-        print("user longitude = \(userLocation.coordinate.longitude)")
-    }
-    
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error \(error)")
-    }
-
 }
 

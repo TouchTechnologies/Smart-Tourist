@@ -42,12 +42,15 @@ class CustomInfoWindow: UIView {
     }
     
     func setData(data:[String:AnyObject]) {
+        
+        print(data)
+        
         let itemName = data["itemName"] as! String?
-        let itemType = data["itemType"] as! String?
+        //let itemType = data["itemType"] as! String?
         let itemLogo:UIImage = data["itemLogo"] as! UIImage
         
         self.lblTitle.text = itemName
-        self.lblTitle.sizeToFit()
+        //self.lblTitle.sizeToFit()
         //self.scrollerTitle.contentSize = CGSize(width: self.lblTitle.frame.width + 6, height: self.scrollerTitle.frame.height)
         
         self.imgLogo.image = itemLogo

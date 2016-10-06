@@ -28,6 +28,7 @@ class tbViewCell_Lists: UITableViewCell {
     @IBOutlet weak var imgLineBottom: UIImageView!
     
     var api = facebookAPI()
+    let app = UIApplication.shared.delegate as! AppDelegate
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,46 +67,49 @@ class tbViewCell_Lists: UITableViewCell {
 //        print("-------")
       
         
-        DispatchQueue.main.async {
-           
+        DispatchQueue.global(qos: .background).async {
             
-            self.lblTitle.text = data["name"].stringValue
-            self.lblSubtitle.text = data["category"].stringValue
-            
-            self.lblLike.text = Int(data["fan_count"].stringValue)?.asFomatter()
-            self.lblCheckin.text = Int(data["checkins"].stringValue)?.asFomatter()
-            
-            
-            let lat:CLLocationDegrees = data["location"]["latitude"].doubleValue
-            let lng:CLLocationDegrees = data["location"]["longitude"].doubleValue
-            
-            //        print("lat,lng ---- > > >")
-            //        print("lat:\(lat) / lng:\(lng)")
-            let startGeo:CLLocation = CLLocation(latitude: 13.753059, longitude: 100.540683)
-            let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
-            let floatDistance = self.api.getDistance(curLocation: startGeo, destLocation: endGeo)
-            
-            let strDistance = String(format: "%.02f", floatDistance)
-            self.lblKM.text =  String("\(strDistance) km.")
-            
-            
-            
-            self.imgType.isHidden = true
-            
-            //        "itemName": itemName as AnyObject,
-            //        "itemSubtitle": itemSubtitle as AnyObject,
-            //        "itemFanCount": itemFanCount as AnyObject,
-            //        "itemCheckins": itemCheckins as AnyObject,
-            //        "itemDistant": "\(strDistance) km." as AnyObject,
-            //        "itemLogo": UIImage(),
-            
-            //
-            
-            let urlLogoImage = data["picture"]["data"]["url"].stringValue
-            
-            Nuke.loadImage(with: URL(string: urlLogoImage)!, into: self.imgLogo)
-            self.loader.stopAnimating()
-            
+            DispatchQueue.main.async {
+                self.lblTitle.text = data["name"].stringValue
+                self.lblSubtitle.text = data["category"].stringValue
+                
+                self.lblLike.text = Int(data["fan_count"].stringValue)?.asFomatter()
+                self.lblCheckin.text = Int(data["checkins"].stringValue)?.asFomatter()
+                
+                
+                let lat:CLLocationDegrees = data["location"]["latitude"].doubleValue
+                let lng:CLLocationDegrees = data["location"]["longitude"].doubleValue
+                
+                //        print("lat,lng ---- > > >")
+                //        print("lat:\(lat) / lng:\(lng)")
+                
+                let myGeo:CLLocation = CLLocation(latitude: 13.8906948, longitude: 100.5690317)
+                let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
+                let floatDistance = self.api.getDistance(curLocation: myGeo, destLocation: endGeo)
+                
+                let strDistance = String(format: "%.02f", floatDistance)
+                self.lblKM.text =  String("\(strDistance) km.")
+                
+                
+                
+                self.imgType.isHidden = true
+                
+                //        "itemName": itemName as AnyObject,
+                //        "itemSubtitle": itemSubtitle as AnyObject,
+                //        "itemFanCount": itemFanCount as AnyObject,
+                //        "itemCheckins": itemCheckins as AnyObject,
+                //        "itemDistant": "\(strDistance) km." as AnyObject,
+                //        "itemLogo": UIImage(),
+                
+                //
+                
+                let urlLogoImage = data["picture"]["data"]["url"].stringValue
+                
+
+                Nuke.loadImage(with: URL(string: urlLogoImage)!, into: self.imgLogo)
+                self.loader.stopAnimating()
+                
+            }
         }
         
         
