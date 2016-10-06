@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import GoogleMaps
 import Nuke
 
 
@@ -26,6 +27,7 @@ class tbViewCell_Lists: UITableViewCell {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var imgLineBottom: UIImageView!
     
+    var api = facebookAPI()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,44 +65,50 @@ class tbViewCell_Lists: UITableViewCell {
 //        print(objData)
 //        print("-------")
       
-        self.lblTitle.text = data["name"].stringValue
-        self.lblSubtitle.text = data["category"].stringValue
         
-        self.lblLike.text = Int(data["fan_count"].stringValue)?.asFomatter()
-        self.lblCheckin.text = Int(data["checkins"].stringValue)?.asFomatter()
-        self.imgType.isHidden = true
+        DispatchQueue.main.async {
+           
+            
+            self.lblTitle.text = data["name"].stringValue
+            self.lblSubtitle.text = data["category"].stringValue
+            
+            self.lblLike.text = Int(data["fan_count"].stringValue)?.asFomatter()
+            self.lblCheckin.text = Int(data["checkins"].stringValue)?.asFomatter()
+            
+            
+            let lat:CLLocationDegrees = data["location"]["latitude"].doubleValue
+            let lng:CLLocationDegrees = data["location"]["longitude"].doubleValue
+            
+            //        print("lat,lng ---- > > >")
+            //        print("lat:\(lat) / lng:\(lng)")
+            let startGeo:CLLocation = CLLocation(latitude: 13.753059, longitude: 100.540683)
+            let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
+            let floatDistance = self.api.getDistance(curLocation: startGeo, destLocation: endGeo)
+            
+            let strDistance = String(format: "%.02f", floatDistance)
+            self.lblKM.text =  String("\(strDistance) km.")
+            
+            
+            
+            self.imgType.isHidden = true
+            
+            //        "itemName": itemName as AnyObject,
+            //        "itemSubtitle": itemSubtitle as AnyObject,
+            //        "itemFanCount": itemFanCount as AnyObject,
+            //        "itemCheckins": itemCheckins as AnyObject,
+            //        "itemDistant": "\(strDistance) km." as AnyObject,
+            //        "itemLogo": UIImage(),
+            
+            //
+            
+            let urlLogoImage = data["picture"]["data"]["url"].stringValue
+            
+            Nuke.loadImage(with: URL(string: urlLogoImage)!, into: self.imgLogo)
+            self.loader.stopAnimating()
+            
+        }
         
         
-        
-        let urlLogoImage = data["picture"]["data"]["url"].stringValue
-        
-//        print("___urlLogoImage___")
-//        print(data["picture"]["data"]["url"])
-//        print("-------")
-//        
-//        var urlRequest = URLRequest(url: URL(string: urlLogoImage)!)
-//        urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
-//        urlRequest.timeoutInterval = 30
-//        
-//        var request = Request(urlRequest: urlRequest)
-//        
-//        // You can add arbitrary number of transformations to the request
-//        //request.process(with: GaussianBlur())
-//        
-//        // Disable memory caching
-//        request.memoryCacheOptions.writeAllowed = false
-//        
-//        // Load an image
-//        Nuke.loadImage(with: request, into: self.imgLogo)
-////
-//////        loader.startAnimating()
-//////        Nuke.loadImage(with: request, into: self.imgLogo) { [weak v] in
-//////            v?.handle(response: $0, isFromMemoryCache: $1)
-//////            self.loader.stopAnimating()
-//////        }
-        
-        Nuke.loadImage(with: URL(string: urlLogoImage)!, into: self.imgLogo)
-        self.loader.stopAnimating()
     }
     
 }

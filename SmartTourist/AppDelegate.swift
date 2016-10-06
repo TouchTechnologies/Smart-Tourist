@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         let fb = facebookAPI()
         print("gatPlace")
 
-        
         let curLat = 13.752468
         let curLong = 100.566107
         let destLat = 13.7037469
