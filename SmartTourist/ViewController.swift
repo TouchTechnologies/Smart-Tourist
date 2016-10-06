@@ -276,10 +276,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         self._tbDataList.addPullToRefresh(actionHandler: {
             //print("add Top")
             
-            //            self.currentPage = 1
-            //            self.f._filter_set_WithKey("page", andValue: "1")
-            
-            self.page = 1
+            self.page = 0
             _weakSelf!.refreshData()
             
         })
@@ -430,7 +427,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         let params:Parameters =  [
             "type":"place",
             "center":strGeo,
-            //"distance":"10000",
+            "distance":"100000",
             "access_token":strToken,
             "q":searchType,
             "fields":"name,fan_count,talking_about_count,checkins,category,category_list,picture.height(200),location",
@@ -595,7 +592,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         let params:Parameters =  [
             "type":"place",
             "center":strGeo,
-            //"distance":"10000",
+            "distance":"100000",
             "access_token":strToken,
             "q":searchType,
             "fields":"name,fan_count,talking_about_count,checkins,category,category_list,picture.height(200),location",
@@ -842,7 +839,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         page = 0
         _tbDataList.showsInfiniteScrolling = true
         SVProgressHUD.show()
-        searchType = "bank"
+        searchType = "ธนาคาร"
         refreshData()
         btnTopLeftClick(sender: UIButton())
         
