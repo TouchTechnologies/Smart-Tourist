@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import MapKit
 import Alamofire
 import SVPullToRefresh
 import SVProgressHUD
@@ -64,6 +65,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     var searchType = ""
     
     var dataLists = JSON([:])
+    var _dataLists =  [String:AnyObject]()
+    var _dataListsAR:NSMutableArray = []
+    var _dataSortAR:NSMutableArray = []
 //    var dataLists:NSMutableArray = []
     
     
@@ -78,7 +82,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         strToken = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
         
         
-        limit = 10
+        limit = 40
         page = 0
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -295,8 +299,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         
-        
-        print("xxx")
+        print("name \(marker.title)")
+        let coordinate = CLLocationCoordinate2DMake(marker.position.latitude,marker.position.longitude)
+        //create MKMapItem out of coordinates
+        let placeMark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
+        let destination = MKMapItem(placemark: placeMark)
+        destination.name = marker.title
+        destination.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
     
     
@@ -359,7 +368,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
 //        print("Cell4Row")
 //        print(JSON(self.dataLists[indexPath.row]))
         
-        cell.setData(data: self.dataLists[indexPath.row])
+//        cell.setData(data: self.dataLists[indexPath.row])
+        cell.setData(data: self._dataListsAR[indexPath.row] as! [String : AnyObject])
         
 //        Nuke.loadImage(with: URL(string: urlLogoImage)!, into: cell.imgLogo)
         
@@ -567,9 +577,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                     if let res = response.result.value {
                         
                         let _json = JSON(res)
+                    
                         
                         let _lists = _json["data"]
+                        self._dataListsAR.removeAllObjects()
+                        let myGeo:CLLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+                        for item in _lists.arrayValue {
+                            self._dataLists["name"] = String(item["name"].stringValue) as AnyObject?
+                            self._dataLists["category"] = String(item["category"].stringValue) as AnyObject?
+                            self._dataLists["fan_count"] = String(item["fan_count"].stringValue) as AnyObject?
+                            
+                            let strCheckins = String(format: "%d", item["checkins"].intValue)
+//                            self._dataLists["checkins"] = String(item["checkins"].stringValue) as AnyObject?
+                            
+                            self._dataLists["checkins"] = item["checkins"].intValue as AnyObject?
+                            self._dataLists["picture"] = String(item["picture"]["data"]["url"].stringValue) as AnyObject?
+                            
+                            let lat:CLLocationDegrees = item["location"]["latitude"].doubleValue
+                            let lng:CLLocationDegrees = item["location"]["longitude"].doubleValue
+                            let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
+                            let floatDistance = self.api.getDistance(curLocation: myGeo, destLocation: endGeo)
+                            let strDistance = String(format: "%.02f", floatDistance)
+                            
+                            self._dataLists["distance"] = strDistance as AnyObject?
+                            
+                            self._dataListsAR.add(self._dataLists)
+                        }
+                
                         
+//                        let sortedArray = self._dataListsAR
+//                        let firstDescriptor = NSSortDescriptor(key: "distance", ascending: true)
+//                        let sortDescriptors = [firstDescriptor]
+//                        let sortData = sortedArray.sortedArray(using: sortDescriptors)
+//                    
+//                        self._dataListsAR.removeAllObjects()
+//                        self._dataListsAR.addObjects(from: sortData)
+                    
 //print("_lists")
 //print(_lists)
 //print("------")
@@ -582,9 +625,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                                 //let jsonItem = JSON(item)
                                 //let jsonItem = item
                                 //                                print("jsonItem ---- > > >")
-                                print(index)
-                                print(jsonItem)
-                                print("------")
+//                                print(index)
+//                                print(jsonItem)
+//                                print("------")
                                 
                                 guard let urlLogoImage:String = String(jsonItem["picture"]["data"]["url"].stringValue) else {
                                     return
@@ -630,6 +673,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                                     "itemSubtitle": itemSubtitle as AnyObject,
                                     "itemFanCount": itemFanCount as AnyObject,
                                     "itemCheckins": itemCheckins as AnyObject,
+                                    "latitude":lat as AnyObject,
+                                    "longitude":lng as AnyObject,
                                     "itemDistant": "\(strDistance) km." as AnyObject,
                                     "itemLogo": UIImage(),
                                     ]
@@ -963,20 +1008,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     @IBAction func btnSortDistane_Click(_ sender: AnyObject) {
         
         /////////////////// SORT /////////////////////
+        print("btnSortDistane_Click")
+        
+        let sortedArray = self._dataListsAR
+        let firstDescriptor = NSSortDescriptor(key: "distance", ascending: true)
+        let sortDescriptors = [firstDescriptor]
+        let sortData = sortedArray.sortedArray(using: sortDescriptors)
+        self._dataListsAR.removeAllObjects()
+        self._dataListsAR.addObjects(from: sortData)
+        
+        print(self._dataListsAR)
         page = 0
         _tbDataList.showsInfiniteScrolling = true
-        SVProgressHUD.show()
-        refreshData()
+//        SVProgressHUD.show()
+        
+        _tbDataList.reloadData()
+//        refreshData()
         btnTopLeftClick2(sender: UIButton())
         
     }
     @IBAction func btnSortPopular_Click(_ sender: AnyObject) {
         
         /////////////////// SORT /////////////////////
+        print("btnSortPopular_Click")
+        let sortedArray = self._dataListsAR
+        let firstDescriptor = NSSortDescriptor(key: "checkins", ascending: false)
+        let sortDescriptors = [firstDescriptor]
+        let sortData = sortedArray.sortedArray(using: sortDescriptors)
+        self._dataListsAR.removeAllObjects()
+        print("before \(self._dataListsAR)")
+        self._dataListsAR.addObjects(from: sortData)
+        print("after\(self._dataListsAR)")
         page = 0
         _tbDataList.showsInfiniteScrolling = true
-        SVProgressHUD.show()
-        refreshData()
+//        SVProgressHUD.show()
+        _tbDataList.reloadData()
+//        refreshData()
         btnTopLeftClick2(sender: UIButton())
         
     }
