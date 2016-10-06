@@ -46,10 +46,16 @@ class CustomInfoWindow: UIView {
         print(data)
         
         let itemName = data["itemName"] as! String?
+        let itemCheckins = data["itemCheckins"] as! String?
+        let itemFanCount = data["itemFanCount"] as! String?
+        
         //let itemType = data["itemType"] as! String?
         let itemLogo:UIImage = data["itemLogo"] as! UIImage
+
         
         self.lblTitle.text = itemName
+        self.lblSubtitle.text = "Checkin \(itemCheckins! as String)"
+        self.lblDistant.text = "Liked \(itemFanCount! as String)"
         //self.lblTitle.sizeToFit()
         //self.scrollerTitle.contentSize = CGSize(width: self.lblTitle.frame.width + 6, height: self.scrollerTitle.frame.height)
         

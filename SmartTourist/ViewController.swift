@@ -81,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         strToken = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
         
         
-        limit = 20
+        limit = 40
         page = 0
         
         // Do any additional setup after loading the view, typically from a nib.
