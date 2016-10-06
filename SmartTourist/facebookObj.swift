@@ -8,10 +8,12 @@
 
 import Foundation
 class facebookObj: NSObject {
+    dynamic var ID = ""
     dynamic var Name = ""
     dynamic var Liked = ""
     dynamic var Checkin = ""
     dynamic var Category = ""
     dynamic var PictureUrl = ""
+    dynamic var Distance = ""
 
 }
