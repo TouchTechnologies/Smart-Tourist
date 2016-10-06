@@ -79,6 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             for d in SSIDDict.keys {
                 print("\(d): \(SSIDDict[d]!)")
+                if (SSIDDict[d]!).isEqual("TOUCH") {
+                    print("SSSSSSIDDDDD : \(SSIDDict[d]!)")
+                    
+                }
             }
         }
         return true
