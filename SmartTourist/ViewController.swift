@@ -47,8 +47,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     var page = Int()
     
     
-    //var dataLists = JSON(JSON([:]))
-    var dataLists = [JSON]()
+    var dataLists = JSON([:])
+//    var dataLists:NSMutableArray = []
     
     // MARK: - -------------------
     override func viewDidLoad() {
@@ -195,6 +195,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
 //        marker.map = mapView
     }
     
+    var markerList = [GMSMarker]()
+//    func refreshMapView(){
+//        //print("refreshMapView")
+//        
+//        var bounds = GMSCoordinateBounds()
+//        
+//        for marker in markerList {
+//            //print("marker.position")
+//            //print(marker.position)
+//            bounds = bounds.includingCoordinate(marker.position)
+//        }
+//        
+//        
+//        
+//        //self._mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds,withEdgeInsets: UIEdgeInsetsMake(0, 5, 5, 5)))
+//        self._mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds))
+//        
+//        //let downwards = GMSCameraUpdate.scrollByX(0, y: 20)
+//        //_mapView.animateWithCameraUpdate(downwards)
+//        
+//        if markerList.count < 2 {
+//            self._mapView.animateToZoom(12)
+//        }
+//        
+//    }
     
     
     // MARK: - TABLEVIEW ZONE
@@ -225,7 +250,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             
             //            self.currentPage = 1
             //            self.f._filter_set_WithKey("page", andValue: "1")
-        
+            
             self.page = 1
             _weakSelf!.refreshData()
             
@@ -256,8 +281,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tbViewCell_Lists
         
-        cell.setData(data: self.dataLists[indexPath.row])
+//        print("Cell4Row")
+//        print(JSON(self.dataLists[indexPath.row]))
         
+        cell.setData(data: self.dataLists[indexPath.row])
         
 //        Nuke.loadImage(with: URL(string: urlLogoImage)!, into: cell.imgLogo)
         
@@ -402,24 +429,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         
                         let _lists = _json["data"]
                         
-//                        print("_lists")
-//                        print(_lists)
-//                        print("------")
+//print("_lists")
+//print(_lists)
+//print("------")
+                        self.dataLists = []
                         
                         if _lists.count > 0 {
-                            //self.dataLists = _lists
-                            for arrIn in _lists{
-                                //print(arrIn)
-                                let arrayIndex:Int = Int(self.dataLists.count)
-                                print("New Data -> \(arrayIndex)")
-                                //self.dataLists.insert(JSON(arrIn), at: arrayIndex)
-                                self.dataLists.append(JSON(arrIn))
-                                //self.dataLists.
-                                print(self.dataLists[arrayIndex])
+                            self.dataLists = _lists
+                            
+                            if _lists.count < self.limit {
+                                self._tbDataList.showsInfiniteScrolling = false
                             }
 
                         }else{
-                            self.dataLists = [JSON]()
+                            self.dataLists = JSON([:])
                         }
                         
                         print("dataLists.count")
@@ -446,7 +469,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     }
     
     func loadMoreData() {
-        
         
         let hds:HTTPHeaders = [:]
         
@@ -493,20 +515,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                             print("_lists.count")
                             print(_lists.count)
                             
-                            for arrIn in _lists{
-                                print(arrIn)
-                                let arrayIndex:Int = Int(self.dataLists.count)
-                                self.dataLists[arrayIndex] = JSON(arrIn)
-                                print("New Data -> \(arrayIndex)")
-                                print(self.dataLists[arrayIndex])
+                            self.dataLists = JSON(self.dataLists.arrayValue + _lists.arrayValue)
+                            
+                            if _lists.count < self.limit {
+                                self._tbDataList.showsInfiniteScrolling = false
                             }
                             
-//                            if let newArray = _lists.array {
-//                                self.dataLists += newArray
-//                            }
-                            
                         }else{
-                            self.dataLists = [JSON]()
+                            
                             self._tbDataList.showsInfiniteScrolling = false
                         }
                         

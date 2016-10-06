@@ -30,6 +30,8 @@ class tbViewCell_Lists: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let grayColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
+
         let bgView = UIView(frame: self.frame)
         bgView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
         let bgViewActive = UIView(frame: self.frame)
@@ -38,8 +40,12 @@ class tbViewCell_Lists: UITableViewCell {
         self.backgroundView = bgView
         self.selectedBackgroundView = bgViewActive
         
+        self.imgLogo.contentMode = .scaleAspectFill
+        self.imgLogo.clipsToBounds = true
+        self.imgLogo.backgroundColor = grayColor
+        
         //self.imgLineBottom.image = UIImage.imageWithColor(color: UIColor.gray)
-        self.imgLineBottom.image = UIImage.imageWithColor(color: UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0))
+        self.imgLineBottom.image = UIImage.imageWithColor(color: grayColor)
         
     }
 
@@ -60,8 +66,8 @@ class tbViewCell_Lists: UITableViewCell {
         self.lblTitle.text = data["name"].stringValue
         self.lblSubtitle.text = data["category"].stringValue
         
-        self.lblLike.text = data["fan_count"].stringValue
-        self.lblCheckin.text = data["checkins"].stringValue
+        self.lblLike.text = Int(data["fan_count"].stringValue)?.asFomatter()
+        self.lblCheckin.text = Int(data["checkins"].stringValue)?.asFomatter()
         self.imgType.isHidden = true
         
         
