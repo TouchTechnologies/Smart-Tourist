@@ -48,7 +48,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     
     
     //var dataLists = JSON(JSON([:]))
-    var dataLists = [JSON]()
+    var dataLists = [:]
     
     // MARK: - -------------------
     override func viewDidLoad() {
@@ -256,7 +256,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tbViewCell_Lists
         
-        cell.setData(data: self.dataLists[indexPath.row])
+        cell.setData(data: self.dataLists[indexPath.row] as! JSON)
         
         
 //        Nuke.loadImage(with: URL(string: urlLogoImage)!, into: cell.imgLogo)
@@ -409,17 +409,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         if _lists.count > 0 {
                             //self.dataLists = _lists
                             for arrIn in _lists{
-                                //print(arrIn)
+                                print(arrIn)
                                 let arrayIndex:Int = Int(self.dataLists.count)
                                 print("New Data -> \(arrayIndex)")
                                 //self.dataLists.insert(JSON(arrIn), at: arrayIndex)
-                                self.dataLists.append(JSON(arrIn))
+                                //self.dataLists.append(JSON(arrIn))
                                 //self.dataLists.
-                                print(self.dataLists[arrayIndex])
+                                //print(self.dataLists[arrayIndex])
+                                //self.dataLists
+                                
+                                print("------ >>>>>>>>>>>>>>>>")
                             }
 
                         }else{
-                            self.dataLists = [JSON]()
+                            self.dataLists = [:]
                         }
                         
                         print("dataLists.count")
