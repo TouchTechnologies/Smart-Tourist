@@ -25,7 +25,7 @@ class facebookAPI {
                                       "type": "place",
                                       "center":"\(curLat),\(curLong)",
                                       "access_token":access_token,
-                                      "fields": "name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500)",
+                                      "fields": "name,fan_count,talking_about_count,checkins,location,category,category_list,picture.height(500)",
                                       "distance":"10000",
                                       "limit":limit,
                                       "offset":offset
