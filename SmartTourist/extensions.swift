@@ -114,6 +114,26 @@ extension UIImage {
 }
 
 
+extension Int {
+    func asFomatter() -> String {
+        let largeNumber = 31908551587
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        numberFormatter.string(from: NSNumber(value: largeNumber))
+        return numberFormatter.string(from: NSNumber(value: self))!
+    }
+}
+
+extension Int {
+    var asLocaleCurrency:String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        //return formatter.string(from: NSNumber(self))!
+        return formatter.string(from: NSNumber(value: self))!
+    }
+}
+
 
 
 
