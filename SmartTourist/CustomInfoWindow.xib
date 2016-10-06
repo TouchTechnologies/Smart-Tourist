@@ -30,19 +30,13 @@
                     <frame key="frameInset" minX="2" minY="2" width="70" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                 </imageView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceHorizontal="YES" id="g03-pG-aJY">
-                    <frame key="frameInset" minX="75" height="72" maxX="3"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" id="YdP-W1-Kcd">
+                    <frame key="frameInset" minX="75" minY="2" height="28" maxX="3"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" id="YdP-W1-Kcd">
-                            <rect key="frame" x="0.0" y="5" width="178" height="23"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                </scrollView>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K9b-7A-37b">
                     <frame key="frameInset" minX="75" minY="28" height="23" maxX="3"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -65,7 +59,6 @@
                 <outlet property="lblDistant" destination="qA6-kd-gMw" id="NzP-cK-HYk"/>
                 <outlet property="lblSubtitle" destination="K9b-7A-37b" id="AFE-I1-N7P"/>
                 <outlet property="lblTitle" destination="YdP-W1-Kcd" id="NYH-yq-hFr"/>
-                <outlet property="scrollerTitle" destination="g03-pG-aJY" id="9XN-IK-D3Y"/>
                 <outlet property="viewArrowBack" destination="dCt-7j-yAA" id="MLj-m7-aEa"/>
                 <outlet property="viewArrowFront" destination="lHR-nm-u9F" id="rAK-ac-E5s"/>
                 <outlet property="viewMainBG" destination="GY1-cS-OIj" id="4Vd-Hc-gKo"/>

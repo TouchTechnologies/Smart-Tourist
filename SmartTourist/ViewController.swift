@@ -19,6 +19,7 @@ import SystemConfiguration.CaptiveNetwork
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, GMSMapViewDelegate {
     
     var fn = Functions()
+    var api = facebookAPI()
     
     // bgView Set
     @IBOutlet weak var bgView_Detail: UIView!
@@ -124,9 +125,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         //UIApplication.shared.openURL(NSURL(string:"prefs:root=General")! as URL)
         //UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
         
-        print("UIApplicationOpenSettingsURLString")
-        print(UIApplicationOpenSettingsURLString)
-        print("----------------------------------")
         
         imgRight = UIImage.fontAwesomeIconWithName(currentShow == "lists" ? .ListAlt : .Map, textColor: UIColor.gray, size: CGSize(width:30, height:30))
         let imgRight_0 = UIImage.fontAwesomeIconWithName(currentShow == "lists" ? .ListAlt : .Map, textColor: UIColor.clear, size: CGSize(width:30, height:30))
@@ -231,6 +229,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         
         return view
     }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        
+        
+        print("xxx")
+    }
+    
     
     // MARK: - TABLEVIEW ZONE
     func initTableview() {
@@ -384,7 +389,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         _viewArrowMenu.rotate(angle: 45)
         _viewArrowMenu.backgroundColor = UIColor.white
         
-        
         bgView_Detail.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH_min)
         mapView.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH)
         
@@ -450,27 +454,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         if _lists.count > 0 {
                             self.dataLists = _lists
                             
-                            for item in self.dataLists.arrayValue {
+                            for jsonItem in self.dataLists.arrayValue {
                                 //let jsonItem = JSON(item)
-                                let jsonItem = item
+                                //let jsonItem = item
 //                                print("jsonItem ---- > > >")
 //                                print(jsonItem)
                                 
                                 guard let urlLogoImage:String = String(jsonItem["picture"]["data"]["url"].stringValue) else {
-                                    //print("xx")
                                     return
                                 }
                                 guard let itemName:String = String(jsonItem["name"].stringValue) else {
-                                    //print("xx")
                                     return
                                 }
+                                
+                                guard let itemSubtitle:String = String(jsonItem["category"].stringValue) else {
+                                    return
+                                }
+                                guard let strFanCount:String = String(jsonItem["fan_count"].stringValue) else {
+                                    return
+                                }
+                                guard let strCheckins:String = String(jsonItem["checkins"].stringValue) else {
+                                    return
+                                }
+                                let itemFanCount = Int(strFanCount)?.asFomatter()
+                                let itemCheckins = Int(strCheckins)?.asFomatter()
+                                
+
                                 //print(urlLogoImage)
                                 
                                 let lat:CLLocationDegrees = jsonItem["location"]["latitude"].doubleValue
                                 let lng:CLLocationDegrees = jsonItem["location"]["longitude"].doubleValue
                                 
-                                print("lat,lng ---- > > >")
-                                print("lat:\(lat) / lng:\(lng)")
+//                                print("lat,lng ---- > > >")
+//                                print("lat:\(lat) / lng:\(lng)")
+                                
+                                let startGeo:CLLocation = CLLocation(latitude: 12.3132123, longitude: 80.123533)
+                                let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
+                                let floatDistance = self.api.getDistance(curLocation: startGeo, destLocation: endGeo)
+                                let strDistance = String(format: "%.02f", floatDistance)
                                 
                                 let position: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (lat), longitude: lng)
                                 let marker = GMSMarker(position: position)
@@ -479,13 +500,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                                 marker.map = self.mapView
                                 marker.icon = Toucan(image: UIImage(named: "pin-marker-waiting.png")!).resizeByScaling(CGSize(width:50, height:57)).image
                                 
+                                
                                 var dictsForMap:[String: AnyObject] = [
                                     "itemName": itemName as AnyObject,
-                                    "itemType": "xxxx" as AnyObject,
+                                    "itemSubtitle": itemSubtitle as AnyObject,
+                                    "itemFanCount": itemFanCount as AnyObject,
+                                    "itemCheckins": itemCheckins as AnyObject,
+                                    "itemDistant": "\(strDistance) km." as AnyObject,
                                     "itemLogo": UIImage(),
                                     ]
 
-                                
                                 let url = NSURL(string: urlLogoImage)
                                 
                                 DispatchQueue.main.async {
@@ -497,12 +521,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                                     }
                                 }
                                 
-                                
                                 self.markerList.append(marker)
                                 
-                                self.refreshMapView()
                                 
                             }
+                            
+                            self.refreshMapView()
                             
                             if _lists.count < self.limit {
                                 self._tbDataList.showsInfiniteScrolling = false
@@ -582,11 +606,92 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                             print("_lists.count")
                             print(_lists.count)
                             
-                            self.dataLists = JSON(self.dataLists.arrayValue + _lists.arrayValue)
-                            
-                            if _lists.count < self.limit {
-                                self._tbDataList.showsInfiniteScrolling = false
+                            DispatchQueue.main.async {
+                                
+                                
+                                self.dataLists = JSON(self.dataLists.arrayValue + _lists.arrayValue)
+                                
+                                if _lists.count < self.limit {
+                                    self._tbDataList.showsInfiniteScrolling = false
+                                }
+                                
+                                
+                                for jsonItem in self.dataLists.arrayValue {
+                                    //let jsonItem = JSON(item)
+                                    //let jsonItem = item
+                                    //                                print("jsonItem ---- > > >")
+                                    //                                print(jsonItem)
+                                    
+                                    guard let urlLogoImage:String = String(jsonItem["picture"]["data"]["url"].stringValue) else {
+                                        return
+                                    }
+                                    guard let itemName:String = String(jsonItem["name"].stringValue) else {
+                                        return
+                                    }
+                                    
+                                    guard let itemSubtitle:String = String(jsonItem["category"].stringValue) else {
+                                        return
+                                    }
+                                    guard let strFanCount:String = String(jsonItem["fan_count"].stringValue) else {
+                                        return
+                                    }
+                                    guard let strCheckins:String = String(jsonItem["checkins"].stringValue) else {
+                                        return
+                                    }
+                                    let itemFanCount = Int(strFanCount)?.asFomatter()
+                                    let itemCheckins = Int(strCheckins)?.asFomatter()
+                                    
+                                    
+                                    //print(urlLogoImage)
+                                    
+                                    let lat:CLLocationDegrees = jsonItem["location"]["latitude"].doubleValue
+                                    let lng:CLLocationDegrees = jsonItem["location"]["longitude"].doubleValue
+                                    
+                                    //                                    print("lat,lng ---- > > >")
+                                    //                                    print("lat:\(lat) / lng:\(lng)")
+                                    
+                                    let startGeo:CLLocation = CLLocation(latitude: 12.3132123, longitude: 80.123533)
+                                    let endGeo:CLLocation = CLLocation(latitude: lat, longitude: lng)
+                                    let floatDistance = self.api.getDistance(curLocation: startGeo, destLocation: endGeo)
+                                    let strDistance = String(format: "%.02f", floatDistance)
+                                    
+                                    let position: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (lat), longitude: lng)
+                                    let marker = GMSMarker(position: position)
+                                    marker.title = jsonItem["name"].stringValue
+                                    //marker.snippet = listsIn.objectForKey("position")?.stringValue
+                                    marker.map = self.mapView
+                                    marker.icon = Toucan(image: UIImage(named: "pin-marker-waiting.png")!).resizeByScaling(CGSize(width:50, height:57)).image
+                                    
+                                    
+                                    var dictsForMap:[String: AnyObject] = [
+                                        "itemName": itemName as AnyObject,
+                                        "itemSubtitle": itemSubtitle as AnyObject,
+                                        "itemFanCount": itemFanCount as AnyObject,
+                                        "itemCheckins": itemCheckins as AnyObject,
+                                        "itemDistant": "\(strDistance) km." as AnyObject,
+                                        "itemLogo": UIImage(),
+                                        ]
+                                    
+                                    let url = NSURL(string: urlLogoImage)
+                                    
+                                    //DispatchQueue.main.async {
+                                    let data = NSData(contentsOf: url! as URL)
+                                    if let _imgMarker = data as NSData?{
+                                        dictsForMap["itemLogo"] = UIImage(data: _imgMarker as Data)!
+                                        marker.userData = dictsForMap
+                                        marker.icon = self.fn.getImageMarker(image: UIImage(data: _imgMarker as Data)!)
+                                    }
+                                    //}
+                                    
+                                    self.markerList.append(marker)
+                                    
+                                    
+                                }
+                                
+                                self.refreshMapView()
+                                
                             }
+                            
                             
                         }else{
                             
@@ -643,9 +748,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                     print(":::: show introview ::::")
                     let VC1 : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "introviewvc")
                     
-                    self.navigationController!.present(VC1, animated: true, completion: nil)
-                    
-                    
+                    self.present(VC1, animated: true, completion: nil)
                 }
             }
         }

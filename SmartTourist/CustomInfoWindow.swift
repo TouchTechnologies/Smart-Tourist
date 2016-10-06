@@ -16,7 +16,6 @@ class CustomInfoWindow: UIView {
     @IBOutlet weak var viewMainBG: UIView!
     
     @IBOutlet weak var imgLogo: UIImageView!
-    @IBOutlet weak var scrollerTitle: UIScrollView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubtitle: UILabel!
     @IBOutlet weak var lblDistant: UILabel!
@@ -50,7 +49,6 @@ class CustomInfoWindow: UIView {
         self.lblTitle.text = itemName
         self.lblTitle.sizeToFit()
         //self.scrollerTitle.contentSize = CGSize(width: self.lblTitle.frame.width + 6, height: self.scrollerTitle.frame.height)
-        self.scrollerTitle.contentSize = CGSize(width: 506, height: self.scrollerTitle.frame.height)
         
         self.imgLogo.image = itemLogo
         self.imgLogo.contentMode = .scaleAspectFill
