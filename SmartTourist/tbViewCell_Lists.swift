@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import Nuke
 
+
 class tbViewCell_Lists: UITableViewCell {
 
     @IBOutlet weak var imgLogo: UIImageView!
@@ -23,6 +24,7 @@ class tbViewCell_Lists: UITableViewCell {
     @IBOutlet weak var lblCheckin: UILabel!
     @IBOutlet weak var lblKM: UILabel!
     @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var imgLineBottom: UIImageView!
     
     
     override func awakeFromNib() {
@@ -33,10 +35,12 @@ class tbViewCell_Lists: UITableViewCell {
         let bgViewActive = UIView(frame: self.frame)
         bgViewActive.backgroundColor = UIColor(red: 239/255, green: 239/255, blue: 239/255, alpha: 1.0)
 
-        
-        
         self.backgroundView = bgView
         self.selectedBackgroundView = bgViewActive
+        
+        //self.imgLineBottom.image = UIImage.imageWithColor(color: UIColor.gray)
+        self.imgLineBottom.image = UIImage.imageWithColor(color: UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0))
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -47,14 +51,20 @@ class tbViewCell_Lists: UITableViewCell {
     
     func setData(data: JSON) {
         
-        let objData = data
+//        let objData = data
         
-        print("objData")
-        print(objData)
-        print("-------")
-        
+//        print("objData")
+//        print(objData)
+//        print("-------")
+      
         self.lblTitle.text = data["name"].stringValue
         self.lblSubtitle.text = data["category"].stringValue
+        
+        self.lblLike.text = data["fan_count"].stringValue
+        self.lblCheckin.text = data["checkins"].stringValue
+        self.imgType.isHidden = true
+        
+        
         
         let urlLogoImage = data["picture"]["data"]["url"].stringValue
         
@@ -84,7 +94,7 @@ class tbViewCell_Lists: UITableViewCell {
 //////        }
         
         Nuke.loadImage(with: URL(string: urlLogoImage)!, into: self.imgLogo)
-        
+        self.loader.stopAnimating()
     }
     
 }
