@@ -22,7 +22,6 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var _tbReviewList: UITableView!
     @IBOutlet weak var imgCover: UIImageView!
     @IBOutlet weak var viewDetail: UIView!
-    @IBOutlet weak var imgLogo: UIImageView!
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubtitle: UILabel!
@@ -41,7 +40,7 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    var itemData = JSON([:])
+    var itemData = [String:AnyObject]()
     var dataID = ""
     
     override func viewDidLoad() {
@@ -55,27 +54,29 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self._tbReviewList.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         
-        guard let urlLogoImage:String = String(itemData["picture"]["data"]["url"].stringValue) else {
+        guard let urlLogoImage:String = itemData["picture"] as! String? else {
             return
         }
         DispatchQueue.global(qos: .background).async {
             let data = NSData(contentsOf: URL(string: urlLogoImage)! as URL)
             DispatchQueue.main.async {
                 if let _img = data as NSData?{
-                    self.imgLogo.image = UIImage(data: _img as Data)!
+                    self.imgCover.image = UIImage(data: _img as Data)!
                 }
             }
         }
         
-        self.lblTitle.text = itemData["name"].stringValue
-        self.lblSubtitle.text = itemData["category"].stringValue
-        self.lblLike.text = itemData["fan_count"].intValue.asFomatter()
-        self.lblCheckin.text = itemData["checkins"].intValue.asFomatter()
-        self.lblKM.text = "\((itemData["distanceKM"].stringValue)) km."
+        self.lblTitle.text = itemData["name"] as! String?
+        self.lblSubtitle.text = itemData["category"] as! String?
+//        self.lblLike.text = Int(itemData["fan_count"] as! Int).asFomatter()
+//        self.lblCheckin.text = Int(itemData["checkins"] as! Int).asFomatter()
+        self.lblLike.text = itemData["fan_count"] as! String?
+        self.lblCheckin.text = String(itemData["checkins"] as! Int)
+        self.lblKM.text = "\(itemData["distance"]!) km."
         
         
         
-        guard let _id:String = String(itemData["id"].stringValue) else {
+        guard let _id:String = itemData["id"] as! String else {
             return
         }
         dataID = _id
@@ -83,10 +84,9 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         initTableview()
         
         
-        
-        
-        
-        
+        self.btnClose.backgroundColor = UIColor.clear
+        self.btnClose.setImage(UIImage.fontAwesomeIconWithName(.Close, textColor: UIColor.white, size: CGSize(width: 30, height: 30)),for:.normal)
+        self.btnClose.tintColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
@@ -163,11 +163,11 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if(data.count > 0){
             
-            itemData = data
+            dataLists = data
             
         }else{
         
-            itemData = JSON([:])
+            dataLists = JSON([:])
             
         }
         
@@ -186,56 +186,39 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             print("dataTagedData")
             print(getData)
             print("=============")
+           
+
             
             
-            guard let _tmpID:String = String(getData["data"]["id"].stringValue) else {
-                return
-            }
-            //let arrID = _tmpID.components(separatedBy: "_")
-            let arrID : [String] = _tmpID.components(separatedBy: "_")
-            let _id    = arrID[0]
-            
-            
-            print("_tmpID")
-            print(_tmpID)
-            print("--------")
-            print("arrID")
-            print(arrID)
-            print("--------")
-            print("_id")
-            print(_id)
-            print("--------")
-            
-            self.api.getDataByID(ID: _id, completionHandler: {data in
-                
-                let dataByID = JSON(data)
-                print("getDataByID")
-                print(dataByID)
-                print("=============")
-                
-                guard let urlLogoImagexxx:String = String(dataByID["picture"]["data"]["url"].stringValue) else {
-                    return
-                }
-                
-//                let urlLogoImage:String = dataByID["picture"]["data"]["url"].stringValue
+//            self.api.getDataByID(ID: _id, completionHandler: {data in
 //                
-//                print("urlLogoImage")
-//                print(urlLogoImage)
+//                let dataByID = JSON(data)
+//                print("getDataByID")
+//                print(dataByID)
+//                print("=============")
 //                
-//                DispatchQueue.global(qos: .background).async {
-//                    let data = NSData(contentsOf: URL(string: urlLogoImage)! as URL)
-//                    DispatchQueue.main.async {
-//                        if let _img = data as NSData?{
-//                            self.imgLogo.image = UIImage(data: _img as Data)!
-//                        }
-//                    }
+//                guard let urlLogoImagexxx:String = String(dataByID["picture"]["data"]["url"].stringValue) else {
+//                    return
 //                }
-                
-                
-            })
+//                
+////                let urlLogoImage:String = dataByID["picture"]["data"]["url"].stringValue
+////                
+////                print("urlLogoImage")
+////                print(urlLogoImage)
+////                
+////                DispatchQueue.global(qos: .background).async {
+////                    let data = NSData(contentsOf: URL(string: urlLogoImage)! as URL)
+////                    DispatchQueue.main.async {
+////                        if let _img = data as NSData?{
+////                            self.imgLogo.image = UIImage(data: _img as Data)!
+////                        }
+////                    }
+////                }
+//                
+//                
+//            })
             
         })
-        
         
         
     }
@@ -243,13 +226,13 @@ class DetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20 // self.dataLists.count
+        return self.dataLists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tbViewCell_Review
         
-        //cell.setData(data: self.dataLists[indexPath.row])
+        cell.setData(data: self.dataLists[indexPath.row])
         
         return cell
     }

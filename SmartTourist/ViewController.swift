@@ -380,7 +380,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         return 80
     }
     
-    var currentData = JSON([:])
+    var currentData = [String:AnyObject]()
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //tableView.deselectRow(at: indexPath, animated: true)
         
@@ -398,8 +398,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         let floatDistance = self.api.getDistance(curLocation: myGeo, destLocation: endGeo)
         let strDistance = String(format: "%.02f", floatDistance)
         
-        currentData = self.dataLists[indexPath.row]
-        currentData["distanceKM"] = JSON(strDistance)
+        currentData = self._dataListsAR[indexPath.row] as! [String : AnyObject]
         performSegue(withIdentifier: "toDetail", sender: self)
         
     }
@@ -583,11 +582,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         self._dataListsAR.removeAllObjects()
                         let myGeo:CLLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
                         for item in _lists.arrayValue {
+                            self._dataLists["id"] = String(item["id"].stringValue) as AnyObject?
                             self._dataLists["name"] = String(item["name"].stringValue) as AnyObject?
                             self._dataLists["category"] = String(item["category"].stringValue) as AnyObject?
                             self._dataLists["fan_count"] = String(item["fan_count"].stringValue) as AnyObject?
                             
-                            let strCheckins = String(format: "%d", item["checkins"].intValue)
+                            //let strCheckins = String(format: "%d", item["checkins"].intValue)
 //                            self._dataLists["checkins"] = String(item["checkins"].stringValue) as AnyObject?
                             
                             self._dataLists["checkins"] = item["checkins"].intValue as AnyObject?

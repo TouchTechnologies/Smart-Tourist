@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Nuke
 
 class tbViewCell_Review: UITableViewCell {
 
@@ -37,6 +39,8 @@ class tbViewCell_Review: UITableViewCell {
         self.imgLogo.clipsToBounds = true
         self.imgLogo.backgroundColor = grayColor
         
+        lblDate.isHidden = true
+        
         //self.imgLineBottom.image = UIImage.imageWithColor(color: UIColor.gray)
         self.imgLineBottom.image = UIImage.imageWithColor(color: grayColor)
     }
@@ -47,4 +51,31 @@ class tbViewCell_Review: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setData(data: JSON) {
+        
+        
+        print("setData tb")
+        print(data)
+        print("-------")
+        
+        lblTitle.text = data["name"].stringValue
+        lblDetail.text = data["message"].stringValue
+//        lblDate.text = data["name"].stringValue
+        
+        let picture:String = data["picture"].stringValue
+        Nuke.loadImage(with: URL(string: picture)!, into: self.imgLogo)
+        self.loader.stopAnimating()
+        
+//        DispatchQueue.global(qos: .background).async {
+//            let data = NSData(contentsOf: URL(string: urlLogoImage)! as URL)
+//            DispatchQueue.main.async {
+//                if let _img = data as NSData?{
+//                    self.imgLogo.image = UIImage(data: _img as Data)!
+//                }
+//            }
+//        }
+        
+        
+        
+    }
 }
