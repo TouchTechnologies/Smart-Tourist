@@ -47,16 +47,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     var page = Int()
     
     
-    var dataLists = JSON([:])
+    //var dataLists = JSON(JSON([:]))
+    var dataLists = [JSON]()
     
-    
+    // MARK: - -------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         strToken = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
         geoLat = 13.752468
         geoLng = 100.566107
-        limit = 2
-        page = 1
+        limit = 10
+        page = 0
         
         // Do any additional setup after loading the view, typically from a nib.
         _vW = self.view.frame.width
@@ -116,8 +117,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     
     func btnTopRightClick(sender:AnyObject) {
         
+        //UIApplication.shared.openURL(NSURL(string:"prefs:root=General")! as URL)
+        //UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
         
-  
+        print("UIApplicationOpenSettingsURLString")
+        print(UIApplicationOpenSettingsURLString)
+        print("----------------------------------")
         
         imgRight = UIImage.fontAwesomeIconWithName(currentShow == "lists" ? .ListAlt : .Map, textColor: UIColor.gray, size: CGSize(width:30, height:30))
         let imgRight_0 = UIImage.fontAwesomeIconWithName(currentShow == "lists" ? .ListAlt : .Map, textColor: UIColor.clear, size: CGSize(width:30, height:30))
@@ -200,7 +205,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         _tbDataList.delegate = self
         _tbDataList.autoresizesSubviews = true
         _tbDataList.register(UINib(nibName: "tbViewCell_Lists", bundle:nil), forCellReuseIdentifier: "cell")
-        _tbDataList.backgroundColor = UIColor.green
+        _tbDataList.rowHeight = 80
+        _tbDataList.separatorStyle = .none
+        //_tbDataList.backgroundColor = UIColor.green
         
         _viewForList.addSubview(_tbDataList)
         
@@ -228,16 +235,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         self._tbDataList.addInfiniteScrolling(actionHandler: {
             
             if(self.dataLists.count > 0){
-                
-                //let _searchFilter:NSDictionary = self.f._filter_get()
-                
-                //let intPage:Int = (_searchFilter.objectForKey("page")?.integerValue)! + 1
-                //print("intPage = \(intPage)")
-                //let strNextPage = String(intPage)
-                //print("strNextPage = \(strNextPage)")
-                //self.v._filter_Update("page", _Value: strNextPage)
-                //self.f._filter_set_WithKey("page", andValue: strNextPage)
-                
                 
                 self.page = self.page + 1
                 _weakSelf!.loadMoreData()
@@ -379,14 +376,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             "distance":"10000",
             "access_token":strToken,
             "q":"hotel",
-            "fields":"name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500)",
+            "fields":"name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500),location",
             "limit":strLimit,
             "offset":strOffset,
             ]
         
-                print("params")
-                print(params)
-                print("------")
+        
+        print("params refreshData()")
+        //print("params[limit] = \(params["limit"] as! String)")
+        print("params[offset] = \(params["offset"] as! String)")
+        print("------")
         
         //Alamofire.request("https://parseapi.back4app.com/classes/member", method: .get, parameters: params, encoding: URLEncoding.default, headers: hds)
         Alamofire.request("https://graph.facebook.com/search", method: .get, parameters: params, encoding: URLEncoding.default, headers: hds)
@@ -395,7 +394,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                 
                 if response.result.isSuccess {
                     
-                    print("is isSuccess")
+                    //print("is isSuccess")
                     
                     if let res = response.result.value {
                         
@@ -408,11 +407,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
 //                        print("------")
                         
                         if _lists.count > 0 {
-                            self.dataLists = _lists
+                            //self.dataLists = _lists
+                            for arrIn in _lists{
+                                //print(arrIn)
+                                let arrayIndex:Int = Int(self.dataLists.count)
+                                print("New Data -> \(arrayIndex)")
+                                //self.dataLists.insert(JSON(arrIn), at: arrayIndex)
+                                self.dataLists.append(JSON(arrIn))
+                                //self.dataLists.
+                                print(self.dataLists[arrayIndex])
+                            }
+
                         }else{
-                            self.dataLists = [:]
+                            self.dataLists = [JSON]()
                         }
                         
+                        print("dataLists.count")
+                        print(self.dataLists.count)
+                        print("==================================")
+
                         
                         self._tbDataList.reloadData()
                         
@@ -439,7 +452,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         
         let strGeo:String = "\(geoLat),\(geoLng)"
         let strLimit:String = "\(String(limit))"
-        let strOffset:String = "\(String(limit * page))"
+        let strOffset:String = "\(page * limit)"
         
         let params:Parameters =  [
             "type":"place",
@@ -447,13 +460,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             "distance":"10000",
             "access_token":strToken,
             "q":"hotel",
-            "fields":"name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500)",
+            "fields":"name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500),location",
             "limit":strLimit,
             "offset":strOffset,
             ]
         
-        print("params")
-        print(params)
+        print("params loadMoreData()")
+        //print("params[limit] = \(params["limit"] as! String)")
+        print("params[offset] = \(params["offset"] as! String)")
         print("------")
         
         Alamofire.request("https://graph.facebook.com/search", method: .get, parameters: params, encoding: URLEncoding.default, headers: hds)
@@ -462,7 +476,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                 
                 if response.result.isSuccess {
                     
-                    print("is isSuccess")
+                    //print("is isSuccess")
                     
                     if let res = response.result.value {
                         
@@ -476,13 +490,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         
                         if _lists.count > 0 {
                             
+                            print("_lists.count")
+                            print(_lists.count)
+                            
                             for arrIn in _lists{
-                                self.dataLists[Int(self.dataLists.count + 1)] = JSON(arrIn)
-                                
+                                print(arrIn)
+                                let arrayIndex:Int = Int(self.dataLists.count)
+                                self.dataLists[arrayIndex] = JSON(arrIn)
+                                print("New Data -> \(arrayIndex)")
+                                print(self.dataLists[arrayIndex])
                             }
+                            
+//                            if let newArray = _lists.array {
+//                                self.dataLists += newArray
+//                            }
+                            
                         }else{
-                            self.dataLists = [:]
+                            self.dataLists = [JSON]()
+                            self._tbDataList.showsInfiniteScrolling = false
                         }
+                        
+                        print("dataLists.count")
+                        print(self.dataLists.count)
+                        print("==================================")
+
                         
                         
                         self._tbDataList.reloadData()
