@@ -39,7 +39,6 @@ class introviewVC: UIViewController,EAIntroDelegate {
         height = UIScreen.main.bounds.size.height
         beseView.frame = CGRect(x: 0, y: 20, width: width, height: height)
         
-        
         page1.bgImage = UIImage(named:"intro01.jpg")
         page2.bgImage = UIImage(named:"intro02.jpg")
         page3.bgImage = UIImage(named:"intro03.jpg")
@@ -55,7 +54,8 @@ class introviewVC: UIViewController,EAIntroDelegate {
         intro.swipeToExit = false
 
         self.intro.skipButton.setTitle("Skip", for: .normal)
-        
+        self.intro.skipButtonY = self.intro.pageControlY - 20
+        self.intro.skipButtonSideMargin = self.width - self.width/1.1
         self.intro.skipButton.addTarget(self, action: #selector(self.cancelIntroview), for: UIControlEvents.touchUpInside)
       
         print("%d \( self.intro.skipButton.bounds)")
@@ -63,7 +63,7 @@ class introviewVC: UIViewController,EAIntroDelegate {
         self.page7.onPageDidDisappear = {() -> Void in
           
             self.intro.skipButton.setTitle("Skip", for: .normal)
-            self.intro.skipButtonY = self.height - self.height/1.1
+            self.intro.skipButtonY =  self.intro.pageControlY + 10
             self.intro.skipButtonSideMargin = self.width - self.width/1.1
             self.intro.pageControl.isHidden = false
             self.intro.skipButton.isHidden = false
