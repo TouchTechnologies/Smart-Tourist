@@ -371,7 +371,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         // let frmBgMenu = _viewOverlayMenu.frame
         // bgView_Menu.frame = CGRect(x: 0, y: -frmBgMenu.height , width: frmBgMenu.width, height: frmBgMenu.height)
         
-        
         bgView_Menu.frame = CGRect(x: 0, y: -_vH_min, width: self._vW, height: _vH_min)
         bgView_Menu.isHidden = true
         bgView_Menu.alpha = 0
