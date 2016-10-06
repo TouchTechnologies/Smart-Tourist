@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyCq4y83l38iIuQ3ctWd-LSeepSEm05VP-M")
         let fb = facebookAPI()
         print("gatPlace")
-        fb.gatPlace(type: "hotel") { data in
+        fb.gatPlace(type: "hotel",page: 1) { data in
             print("----------------")
             
             print(data["data"]?.count)
