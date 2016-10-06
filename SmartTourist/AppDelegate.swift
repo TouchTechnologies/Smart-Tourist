@@ -19,11 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyCq4y83l38iIuQ3ctWd-LSeepSEm05VP-M")
         let fb = facebookAPI()
         print("gatPlace")
-        fb.gatPlace(type: "hotel",page: 1) { data in
-            print("----------------")
-            
-            print(data["data"]?.count)
-        }
+
+        
+        let curLat = 13.752468
+        let curLong = 100.566107
+        let destLat = 13.7037469
+        let destLong = 100.4495952
+        let curLocation:CLLocation = CLLocation(latitude: curLat, longitude: curLong)
+        let destLocation:CLLocation = CLLocation(latitude: destLat, longitude: destLong)
+        
+        let distance = fb.getDistance(curLocation: curLocation, destLocation: destLocation)
+        print("distance: \(distance) km.")
         
         return true
     }
