@@ -44,7 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     var geoLat = Float32()
     var geoLng = Float32()
     var limit = Int()
-    var offset = Int()
+    var page = Int()
     
     
     var dataLists = JSON([:])
@@ -55,8 +55,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         strToken = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
         geoLat = 13.752468
         geoLng = 100.566107
-        limit = 10
-        offset = 0
+        limit = 2
+        page = 1
         
         // Do any additional setup after loading the view, typically from a nib.
         _vW = self.view.frame.width
@@ -218,6 +218,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             
             //            self.currentPage = 1
             //            self.f._filter_set_WithKey("page", andValue: "1")
+        
+            self.page = 1
             _weakSelf!.refreshData()
             
         })
@@ -235,6 +237,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                 //print("strNextPage = \(strNextPage)")
                 //self.v._filter_Update("page", _Value: strNextPage)
                 //self.f._filter_set_WithKey("page", andValue: strNextPage)
+                
+                
+                self.page = self.page + 1
                 _weakSelf!.loadMoreData()
                 
             }else{
@@ -366,7 +371,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         
         let strGeo:String = "\(geoLat),\(geoLng)"
         let strLimit:String = "\(String(limit))"
-        let strOffset:String = "\(String(offset))"
+        let strOffset:String = "\(page * limit)"
         
         let params:Parameters =  [
             "type":"place",
@@ -398,9 +403,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         
                         let _lists = _json["data"]
                         
-                        print("_lists")
-                        print(_lists)
-                        print("------")
+//                        print("_lists")
+//                        print(_lists)
+//                        print("------")
                         
                         if _lists.count > 0 {
                             self.dataLists = _lists
@@ -408,11 +413,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                             self.dataLists = [:]
                         }
                         
-//                        print("self.dataLists")
-//                        print(self.dataLists)
-//                        print("------")
-                        
-                        //self.title = "Total : \(self.dataLists.count)"
                         
                         self._tbDataList.reloadData()
                         
@@ -435,7 +435,71 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     func loadMoreData() {
         
         
+        let hds:HTTPHeaders = [:]
         
+        let strGeo:String = "\(geoLat),\(geoLng)"
+        let strLimit:String = "\(String(limit))"
+        let strOffset:String = "\(String(limit * page))"
+        
+        let params:Parameters =  [
+            "type":"place",
+            "center":strGeo,
+            "distance":"10000",
+            "access_token":strToken,
+            "q":"hotel",
+            "fields":"name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500)",
+            "limit":strLimit,
+            "offset":strOffset,
+            ]
+        
+        print("params")
+        print(params)
+        print("------")
+        
+        Alamofire.request("https://graph.facebook.com/search", method: .get, parameters: params, encoding: URLEncoding.default, headers: hds)
+            //.validate()
+            .responseJSON(completionHandler: {response in
+                
+                if response.result.isSuccess {
+                    
+                    print("is isSuccess")
+                    
+                    if let res = response.result.value {
+                        
+                        let _json = JSON(res)
+                        
+                        let _lists = _json["data"]
+                        
+                        //                        print("_lists")
+                        //                        print(_lists)
+                        //                        print("------")
+                        
+                        if _lists.count > 0 {
+                            
+                            for arrIn in _lists{
+                                self.dataLists[Int(self.dataLists.count + 1)] = JSON(arrIn)
+                                
+                            }
+                        }else{
+                            self.dataLists = [:]
+                        }
+                        
+                        
+                        self._tbDataList.reloadData()
+                        
+                    }
+                    
+                    
+                    self._tbDataList.pullToRefreshView.stopAnimating()
+                    self._tbDataList.infiniteScrollingView.stopAnimating()
+                    SVProgressHUD.dismiss()
+                }else{
+                    
+                    print("is not Success")
+                    SVProgressHUD.dismiss()
+                }
+                
+            })
         
     }
     
