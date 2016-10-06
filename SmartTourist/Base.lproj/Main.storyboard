@@ -89,7 +89,7 @@
         <!--IntroviewVC-->
         <scene sceneID="L98-Mm-Qlm">
             <objects>
-                <viewController storyboardIdentifier="introviewvc" id="bwO-On-edJ" customClass="introviewVC" customModule="SmartTourist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bwO-On-edJ" customClass="introviewVC" customModule="SmartTourist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qg2-Mm-Rzj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,9 +103,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="edU-oa-jth"/>
-                    <connections>
-                        <outlet property="beseView" destination="Aw8-3m-zPY" id="R2P-Ir-BXr"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W2u-af-0Jj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
