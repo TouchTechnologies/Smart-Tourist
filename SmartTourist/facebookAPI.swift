@@ -91,18 +91,14 @@ class facebookAPI {
             if response.result.isSuccess{
                 if let JSON = response.result.value {
                     completionHandler(JSON as! [String : AnyObject])
-                    
                 }
-            }else
-            {
+            }else{
                 let error = response.result.error
                 completionHandler(error as! [String : AnyObject])
             }
-            
         }
     }
     func getDistance(curLocation:CLLocation,destLocation:CLLocation) -> Double {
-
         let distance = destLocation.distance(from: curLocation)/1000
         return Double(distance)
     }
