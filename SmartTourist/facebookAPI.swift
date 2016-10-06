@@ -11,11 +11,14 @@ import Alamofire
 
 class facebookAPI {
     let apiURL = "https://graph.facebook.com"
+    let fbObj = facebookObj()
+    let limit = 20
     let access_token = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
     
     
-    func gatPlace(type:String,completionHandler:@escaping ([String:AnyObject])->()) {
+    func gatPlace(type:String,page:Int,completionHandler:@escaping ([String:AnyObject])->()) {
 
+        let offset = page*limit
         
         let parameters: Parameters = ["q":type,
                                       "type": "place",
@@ -23,20 +26,88 @@ class facebookAPI {
                                       "access_token":access_token,
                                       "fields": "name,fan_count,talking_about_count,checkins,category,category_list,picture.height(500)",
                                       "distance":"10000",
-                                      "limit":"100"
+                                      "limit":limit,
+                                      "offset":offset
                                       ]
         
         // All three of these calls are equivalent
         Alamofire.request("\(apiURL)/search", parameters: parameters).responseJSON{
             response in
             //debugPrint(response)
-            if let JSON = response.result.value {
-                completionHandler(JSON as! [String : AnyObject])
-                
+            if response.result.isSuccess{
+                if let JSON = response.result.value{
+                    let data = JSON as! NSDictionary
+                    for item in data["data"] as! NSArray{
+                        for (key,value) in (item as! NSDictionary)
+                        {
+                            print("Key : \(key) Value : \(value)")
+//                            if let ID = item["id"] as! String{
+//                                
+//                            }
+//                            fbObj.ID = item["id"] as! String
+                            
+                            
+                        }
+//                        for aKey in (item as! NSDictionary).allKeys{
+//                            
+//                            print("KEYYYY: \(aKey)")
+//                            
+//                        }
+                        
+                    }
+
+                    completionHandler(JSON as! [String : AnyObject])
+                }
+            }else
+            {
+                let error = response.result.error
+                completionHandler(error as! [String : AnyObject])
             }
-
-
         }
 
+    }
+    func getTagedData(ID:String,completionHandler:@escaping ([String:AnyObject])->()){
+        let parameters: Parameters = ["access_token":access_token,
+                                      "fields"      : "message,created_time,id,name,picture"
+                                     ]
+        
+        // All three of these calls are equivalent
+        Alamofire.request("\(apiURL)/\(ID)/tagged", parameters: parameters).responseJSON{
+            response in
+            //debugPrint(response)
+            if response.result.isSuccess{
+                if let JSON = response.result.value {
+                    completionHandler(JSON as! [String : AnyObject])
+                    
+                }
+            }else
+            {
+                let error = response.result.error
+                completionHandler(error as! [String : AnyObject])
+            }
+            
+            
+        }
+    }
+    func getDataByID(ID:String,completionHandler:@escaping ([String:AnyObject])->()) {
+        let parameters: Parameters = ["access_token":access_token,
+                                      "fields"      : "name,id,picture.height(500),about,category_list"
+                                     ]
+        // All three of these calls are equivalent
+        Alamofire.request("\(apiURL)/\(ID)", parameters: parameters).responseJSON{
+            response in
+            //debugPrint(response)
+            if response.result.isSuccess{
+                if let JSON = response.result.value {
+                    completionHandler(JSON as! [String : AnyObject])
+                    
+                }
+            }else
+            {
+                let error = response.result.error
+                completionHandler(error as! [String : AnyObject])
+            }
+            
+        }
     }
 }
