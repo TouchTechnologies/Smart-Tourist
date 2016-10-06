@@ -372,7 +372,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         // bgView_Menu.frame = CGRect(x: 0, y: -frmBgMenu.height , width: frmBgMenu.width, height: frmBgMenu.height)
         
         
-        
         bgView_Menu.frame = CGRect(x: 0, y: -_vH_min, width: self._vW, height: _vH_min)
         bgView_Menu.isHidden = true
         bgView_Menu.alpha = 0
@@ -383,8 +382,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         _viewArrowMenu.frame = CGRect(x: 21, y: 5, width: 20, height: 20)
         _viewArrowMenu.rotate(angle: 45)
         _viewArrowMenu.backgroundColor = UIColor.white
-        
-        
         
         
         bgView_Detail.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH_min)
