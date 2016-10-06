@@ -743,6 +743,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
             }
             for d in SSIDDict.keys {
                 print("\(d): \(SSIDDict[d]!)")
+                
+ ///////////////// เชคว่า ถ้า ไม่ใช่ Phuget smart wifi ให้ show /////////////////
+                
                 if (SSIDDict[d]!).isEqual("TOUCH") {
                     //show introview
                     print(":::: show introview ::::")
