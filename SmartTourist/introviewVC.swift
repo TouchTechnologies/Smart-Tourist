@@ -53,12 +53,10 @@ class introviewVC: UIViewController,EAIntroDelegate {
         intro.delegate = self
         intro.show(in: beseView, animateDuration: 0.3)
         intro.swipeToExit = false
-//        buttonView.frame = CGRect(x: 0 , y :self.beseView.bounds.size.height - 50,width:width,height:50)
-//        buttonView.backgroundColor = UIColor.black
-//        buttonView.t
+
         self.intro.skipButton.setTitle("Skip", for: .normal)
         
-        self.settingBtn.addTarget(self, action: #selector(self.cancelIntroview), for: UIControlEvents.touchUpInside)
+        self.intro.skipButton.addTarget(self, action: #selector(self.cancelIntroview), for: UIControlEvents.touchUpInside)
       
         print("%d \( self.intro.skipButton.bounds)")
   
@@ -100,34 +98,14 @@ class introviewVC: UIViewController,EAIntroDelegate {
     func loadDeviceSetting()
     {
         print("ddddd")
-        let alertController = UIAlertController (title: "Title", message: "Go to Settings?", preferredStyle: .alert)
-        
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-                return
-            }
-            
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                        print("Settings opened: \(success)") // Prints true
-                    })
-                } else {
-                    // Fallback on earlier versions
-                }
-            }
-        }
-        alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
+        UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
         
         
     }
     func cancelIntroview(){
         print("CANCEL")
-        self.intro.hideOffscreenPages = true
+        //self.intro.hideOffscreenPages = true
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

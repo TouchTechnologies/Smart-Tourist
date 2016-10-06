@@ -13,6 +13,7 @@ import SVPullToRefresh
 import SVProgressHUD
 import SwiftyJSON
 import Nuke
+import SystemConfiguration.CaptiveNetwork
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, GMSMapViewDelegate {
@@ -53,6 +54,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     // MARK: - -------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        getInterfaces()
         strToken = "EAAX0NmD7gWABAFFx51sZCReS3iOvFtZA9xFHyZBSXZCI2mHYRJrjFofwOAeOE7Y61uxiuXnnkZAdVS9PPjsikZCusaFYUsnQclTIY6zgzXFIhRdtgfNgDZBxOZCVTauUDKmMNT9tQIu2kzUFG5vyPC7AKiD8CIlbd0QZD"
         geoLat = 13.752468
         geoLng = 100.566107
@@ -550,6 +552,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         
     }
     
+    func getInterfaces() -> Bool {
+        guard let unwrappedCFArrayInterfaces = CNCopySupportedInterfaces() else {
+            print("this must be a simulator, no interfaces found")
+            return false
+        }
+        guard let swiftInterfaces = (unwrappedCFArrayInterfaces as NSArray) as? [String] else {
+            print("System error: did not come back as array of Strings")
+            return false
+        }
+        for interface in swiftInterfaces {
+            print("Looking up SSID info for \(interface)") // en0
+            guard let unwrappedCFDictionaryForInterface = CNCopyCurrentNetworkInfo(interface as CFString) else {
+                print("System error: \(interface) has no information")
+                return false
+            }
+            guard let SSIDDict = (unwrappedCFDictionaryForInterface as NSDictionary) as? [String: AnyObject] else {
+                print("System error: interface information is not a string-keyed dictionary")
+                return false
+            }
+            for d in SSIDDict.keys {
+                print("\(d): \(SSIDDict[d]!)")
+                if (SSIDDict[d]!).isEqual("TOUCH") {
+                    //show introview
+                    print(":::: show introview ::::")
+                    let VC1 : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "introviewvc")
+                    
+                    self.navigationController!.present(VC1, animated: true, completion: nil)
+                    
+                    
+                }
+            }
+        }
+        return true
+    }
     
     
 }
