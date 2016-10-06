@@ -116,10 +116,10 @@ extension UIImage {
 
 extension Int {
     func asFomatter() -> String {
-        let largeNumber = 31908551587
+        //let largeNumber = 31908551587
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        numberFormatter.string(from: NSNumber(value: largeNumber))
+        //numberFormatter.string(from: NSNumber(value: largeNumber))
         return numberFormatter.string(from: NSNumber(value: self))!
     }
 }

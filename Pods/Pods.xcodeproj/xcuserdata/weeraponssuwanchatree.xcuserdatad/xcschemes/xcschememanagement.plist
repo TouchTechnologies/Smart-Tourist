@@ -6,78 +6,103 @@
 	<dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>EAIntroView.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>EARestrictedScrollView.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKLoginKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Harpy.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>LCTabBarController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Nuke.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-SmartTourist.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>ReachabilitySwift.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SVProgressHUD.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SVPullToRefresh.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>051B9BBBA61F7E225FD8D6D216864FA9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>242D5A2A41A8F5351CD8C66D786E0466</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B5277999932AAD8E55FA74AEB57F120</key>
+		<key>2E303C3CE7513908EE880D9CA833AFAE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61F2A6B4D95BBA804AC24FE2FEDC4A90</key>
+		<key>670720DE34BFAE9783505FB90B9887A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6EDC37F3FA92533C6AC3562458AA91F1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +117,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>82137AA0E523D869A6B0CFBA68AFF489</key>
+		<key>82CF2D90F51EE8067A30C6531EDAF598</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>82CF2D90F51EE8067A30C6531EDAF598</key>
+		<key>88264E590A2FA58C5B46DC579EBB8D12</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,22 +137,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B40851751C21333568163D79125AA365</key>
+		<key>B50DBF313D3FD662C3E92CCA9671382C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BDB4B4A26777D3AFC4E37CA263D5F81C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C19A1058D906ECBCB71A1667C35C283F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D8BF146EAE696DCA97C90C51BE045947</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EFB54207FBC5DCDDC3D1694ADC1BDBED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FCE12457633222424CA8E6579E66ABA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

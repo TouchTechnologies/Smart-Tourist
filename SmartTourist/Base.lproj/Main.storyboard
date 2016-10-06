@@ -159,6 +159,13 @@
                                     <view contentMode="scaleToFill" id="Zbn-DL-FSt">
                                         <frame key="frameInset"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" id="cej-q1-QnS" customClass="GMSMapView">
+                                                <frame key="frameInset"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" red="0.2112614454" green="1" blue="0.2172867684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.2112614454" green="1" blue="0.2172867684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
@@ -198,6 +205,7 @@
                         <outlet property="_viewOverlayMenu" destination="PTU-GA-Phn" id="pCC-1c-aqw"/>
                         <outlet property="bgView_Detail" destination="62O-94-0Cz" id="yd8-jS-6lf"/>
                         <outlet property="bgView_Menu" destination="gPD-0Q-gjv" id="zzg-lT-OzB"/>
+                        <outlet property="mapView" destination="cej-q1-QnS" id="rk1-Vl-aSu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIE-eG-lzl" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -18,6 +18,8 @@ import SystemConfiguration.CaptiveNetwork
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, GMSMapViewDelegate {
     
+    var fn = Functions()
+    
     // bgView Set
     @IBOutlet weak var bgView_Detail: UIView!
     @IBOutlet weak var bgView_Menu: UIView!
@@ -173,20 +175,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     }
     
     // MARK: - MAP ZONE
+    
+    @IBOutlet weak var mapView: GMSMapView!
+    var markerList = [GMSMarker]()
+    //var mapView = GMSMapView()
     func initMapview() {
-        
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-        let mapView = GMSMapView.map(withFrame: self._viewForMap.frame, camera: camera)
+        //let mapView = GMSMapView.map(withFrame: self._viewForMap.frame, camera: camera)
+        
+        mapView.camera = camera
+        
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
         mapView.animate(toLocation: CLLocationCoordinate2D.init(latitude: 13.7027041734701, longitude: 101.662359125912))
         mapView.animate(toZoom: 5.3)
         mapView.isMyLocationEnabled = true
    
-        
-        self._viewForMap.addSubview(mapView)
+        //self._viewForMap.addSubview(mapView)
         
         
 //        // Creates a marker in the center of the map.
@@ -197,32 +204,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
 //        marker.map = mapView
     }
     
-    var markerList = [GMSMarker]()
-//    func refreshMapView(){
-//        //print("refreshMapView")
-//        
-//        var bounds = GMSCoordinateBounds()
-//        
-//        for marker in markerList {
-//            //print("marker.position")
-//            //print(marker.position)
-//            bounds = bounds.includingCoordinate(marker.position)
-//        }
-//        
-//        
-//        
-//        //self._mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds,withEdgeInsets: UIEdgeInsetsMake(0, 5, 5, 5)))
-//        self._mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds))
-//        
-//        //let downwards = GMSCameraUpdate.scrollByX(0, y: 20)
-//        //_mapView.animateWithCameraUpdate(downwards)
-//        
-//        if markerList.count < 2 {
-//            self._mapView.animateToZoom(12)
-//        }
-//        
-//    }
+    func refreshMapView(){
+        var bounds = GMSCoordinateBounds()
+        
+        for marker in markerList {
+            bounds = bounds.includingCoordinate(marker.position)
+        }
+        
+        //self._mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds,withEdgeInsets: UIEdgeInsetsMake(0, 5, 5, 5)))
+        self.mapView.animate(with: GMSCameraUpdate.fit(bounds))
+        
+        //let downwards = GMSCameraUpdate.scrollByX(0, y: 20)
+        //_mapView.animateWithCameraUpdate(downwards)
+        
+        if markerList.count < 2 {
+            self.mapView.animate(toZoom: 12)
+        }
+        
+    }
     
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        
+        let _markerData = marker.userData as! NSDictionary
+        let view = Bundle.main.loadNibNamed("CustomInfoWindow", owner: self, options: nil)?[0] as! CustomInfoWindow
+        view.setData(data: _markerData as! [String : AnyObject])
+        
+        return view
+    }
     
     // MARK: - TABLEVIEW ZONE
     func initTableview() {
@@ -382,6 +390,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         
         
         bgView_Detail.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH_min)
+        mapView.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH)
         
     }
     
@@ -392,6 +401,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         if self.dataLists.count < 1 {
             SVProgressHUD.show()
         }
+        
+        DispatchQueue.main.async {
+            self.markerList = [GMSMarker]()
+            self.mapView.clear()
+        }
+        
         
         let hds:HTTPHeaders = [:]
         
@@ -438,6 +453,60 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         
                         if _lists.count > 0 {
                             self.dataLists = _lists
+                            
+                            for item in self.dataLists.arrayValue {
+                                //let jsonItem = JSON(item)
+                                let jsonItem = item
+//                                print("jsonItem ---- > > >")
+//                                print(jsonItem)
+                                
+                                guard let urlLogoImage:String = String(jsonItem["picture"]["data"]["url"].stringValue) else {
+                                    //print("xx")
+                                    return
+                                }
+                                guard let itemName:String = String(jsonItem["name"].stringValue) else {
+                                    //print("xx")
+                                    return
+                                }
+                                //print(urlLogoImage)
+                                
+                                let lat:CLLocationDegrees = jsonItem["location"]["latitude"].doubleValue
+                                let lng:CLLocationDegrees = jsonItem["location"]["longitude"].doubleValue
+                                
+                                print("lat,lng ---- > > >")
+                                print("lat:\(lat) / lng:\(lng)")
+                                
+                                let position: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (lat), longitude: lng)
+                                let marker = GMSMarker(position: position)
+                                marker.title = jsonItem["name"].stringValue
+                                //marker.snippet = listsIn.objectForKey("position")?.stringValue
+                                marker.map = self.mapView
+                                marker.icon = Toucan(image: UIImage(named: "pin-marker-waiting.png")!).resizeByScaling(CGSize(width:50, height:57)).image
+                                
+                                var dictsForMap:[String: AnyObject] = [
+                                    "itemName": itemName as AnyObject,
+                                    "itemType": "xxxx" as AnyObject,
+                                    "itemLogo": UIImage(),
+                                    ]
+
+                                
+                                let url = NSURL(string: urlLogoImage)
+                                
+                                DispatchQueue.main.async {
+                                    let data = NSData(contentsOf: url! as URL)
+                                    if let _imgMarker = data as NSData?{
+                                        dictsForMap["itemLogo"] = UIImage(data: _imgMarker as Data)!
+                                        marker.userData = dictsForMap
+                                        marker.icon = self.fn.getImageMarker(image: UIImage(data: _imgMarker as Data)!)
+                                    }
+                                }
+                                
+                                
+                                self.markerList.append(marker)
+                                
+                                self.refreshMapView()
+                                
+                            }
                             
                             if _lists.count < self.limit {
                                 self._tbDataList.showsInfiniteScrolling = false
