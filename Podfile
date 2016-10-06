@@ -30,5 +30,6 @@ target 'SmartTourist' do
     pod 'GooglePlaces'
 
     pod 'EAIntroView'
-
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKLoginKit'
 end

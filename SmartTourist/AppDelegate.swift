@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import SystemConfiguration.CaptiveNetwork
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let distance = fb.getDistance(curLocation: curLocation, destLocation: destLocation)
         print("distance: \(distance) km.")
+        
+        getInterfaces()
         
         return true
     }
@@ -54,6 +57,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    func getInterfaces() -> Bool {
+        guard let unwrappedCFArrayInterfaces = CNCopySupportedInterfaces() else {
+            print("this must be a simulator, no interfaces found")
+            return false
+        }
+        guard let swiftInterfaces = (unwrappedCFArrayInterfaces as NSArray) as? [String] else {
+            print("System error: did not come back as array of Strings")
+            return false
+        }
+        for interface in swiftInterfaces {
+            print("Looking up SSID info for \(interface)") // en0
+            guard let unwrappedCFDictionaryForInterface = CNCopyCurrentNetworkInfo(interface as CFString) else {
+                print("System error: \(interface) has no information")
+                return false
+            }
+            guard let SSIDDict = (unwrappedCFDictionaryForInterface as NSDictionary) as? [String: AnyObject] else {
+                print("System error: interface information is not a string-keyed dictionary")
+                return false
+            }
+            for d in SSIDDict.keys {
+                print("\(d): \(SSIDDict[d]!)")
+                if (SSIDDict[d]!).isEqual("TOUCH") {
+                    print("SSSSSSIDDDDD : \(SSIDDict[d]!)")
+                    
+                }
+            }
+        }
+        return true
     }
 
 
