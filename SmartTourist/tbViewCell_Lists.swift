@@ -62,8 +62,11 @@ class tbViewCell_Lists: UITableViewCell {
         
 //        let objData = data
         
-//        print("objData")
-//        print(objData)
+//        print("latitude")
+//        print(app.latitude)
+//        print("-------")
+//        print("longitude")
+//        print(app.longitude)
 //        print("-------")
       
         

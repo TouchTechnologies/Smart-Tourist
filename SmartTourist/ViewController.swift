@@ -30,15 +30,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     // bgView Set
     @IBOutlet weak var bgView_Detail: UIView!
     @IBOutlet weak var bgView_Menu: UIView!
+    @IBOutlet weak var bgView_MenuSort: UIView!
     
     // View Detail Set
     @IBOutlet weak var _viewForList: UIView!
     @IBOutlet weak var _viewForMap: UIView!
-
-    // View Menu Set
+    
+    // View Menu Set - Type
     @IBOutlet weak var _viewMenu: UIView!
     @IBOutlet weak var _viewArrowMenu: UIView!
     @IBOutlet weak var _viewOverlayMenu: UIView!
+    // View Menu Set - Sort
+    @IBOutlet weak var _viewMenu_Sort: UIView!
+    @IBOutlet weak var _viewArrowMenu_Sort: UIView!
+    @IBOutlet weak var _viewOverlayMenu_Sort: UIView!
     
     // Display Data
     var _tbDataList = UITableView()
@@ -99,6 +104,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     
     func btnTopLeftClick(sender:AnyObject) {
         
+        if menuSortIsShow == true {
+            btnTopLeftClick2(sender: UIButton())
+        }
+        
         if menuIsShow == false { // Show Menu
             menuIsShow = true
             btnItemBarRight.isEnabled = false
@@ -127,6 +136,47 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                 }, completion: { c in
                     
                     self.bgView_Menu.isHidden = true
+                    
+            })
+            
+        }
+        
+        
+    }
+    
+    func btnTopLeftClick2(sender:AnyObject) {
+        
+        if menuIsShow == true {
+            btnTopLeftClick(sender: UIButton())
+        }
+        if menuSortIsShow == false { // Show Menu
+            menuSortIsShow = true
+            btnItemBarRight.isEnabled = false
+            self.bgView_MenuSort.isHidden = false
+            UIView.animate(withDuration: 0.25, animations: {
+                
+                self._viewOverlayMenu.alpha = 0.5
+                self.bgView_MenuSort.alpha = 1
+                self.bgView_MenuSort.frame = CGRect(x: 0, y: 0, width: self._vW, height: self._vH_min - 8)
+                
+                }, completion: { c in
+                    
+                    
+            })
+            
+        }else{ // Hide Menu
+            
+            menuSortIsShow = false
+            btnItemBarRight.isEnabled = true
+            UIView.animate(withDuration: 0.25, animations: {
+                self._viewOverlayMenu.alpha = 0
+                self.bgView_MenuSort.alpha = 0
+                self.bgView_MenuSort.frame = CGRect(x: 0, y: -self._vH_min, width: self._vW, height: self._vH_min - 8)
+                
+                
+                }, completion: { c in
+                    
+                    self.bgView_MenuSort.isHidden = true
                     
             })
             
@@ -330,12 +380,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
 
     // MARK: - DESIGN ZONE
     var imgLeft = UIImage()
+    var imgLeft2 = UIImage()
     var imgRight = UIImage()
     var currentShow = "lists"
     func designNav() {
         
         
         imgLeft = UIImage.fontAwesomeIconWithName(.Filter, textColor: UIColor.gray, size: CGSize(width:30, height:30))
+        imgLeft2 = UIImage.fontAwesomeIconWithName(.Sort, textColor: UIColor.gray, size: CGSize(width:30, height:30))
+        
         imgRight = UIImage.fontAwesomeIconWithName(.Map, textColor: UIColor.gray, size: CGSize(width:30, height:30))
         let imgRight_0 = UIImage.fontAwesomeIconWithName(.Map, textColor: UIColor.clear, size: CGSize(width:30, height:30))
         
@@ -344,7 +397,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         //btnItemLeft.imageView?.image = imgLeft
         btnItemLeft.setBackgroundImage(imgLeft, for: .normal)
         btnItemLeft.addTarget(self, action: #selector(self.btnTopLeftClick(sender:)), for: UIControlEvents.touchUpInside)
-        let btnItemBarLeft = UIBarButtonItem(customView: btnItemLeft)
+        //let btnItemBarLeft = UIBarButtonItem(customView: btnItemLeft)
+        
+        let btnItemLeft2 = UIButton()
+        btnItemLeft2.frame = CGRect(x:40, y:0, width:30, height:30)
+        //btnItemLeft.imageView?.image = imgLeft
+        btnItemLeft2.setBackgroundImage(imgLeft2, for: .normal)
+        btnItemLeft2.addTarget(self, action: #selector(self.btnTopLeftClick2(sender:)), for: UIControlEvents.touchUpInside)
+        //let btnItemBarLeft2 = UIBarButtonItem(customView: btnItemLeft2)
         
         
         let btnItemRight = UIButton()
@@ -366,8 +426,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
 //        _imgLogo.contentMode = UIViewContentMode.scaleAspectFit
 //        vTitleLogo.addSubview(_imgLogo)
         
+        let viewForLeftButton = UIView()
+        viewForLeftButton.frame = CGRect(x: 0, y: 0, width: btnItemRight.frame.width * 2 + 14, height: 30)
+        viewForLeftButton.addSubview(btnItemLeft)
+        viewForLeftButton.addSubview(btnItemLeft2)
         
-        navigationItem.leftBarButtonItem = btnItemBarLeft
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: viewForLeftButton)
         navigationItem.rightBarButtonItem = btnItemBarRight
         
         //navigationItem.titleView?.tintColor = UIColor.whiteColor()
@@ -375,6 +440,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     }
     
     var menuIsShow = false
+    var menuSortIsShow = false
     func designMenu() {
         
         self._viewForMap.alpha = 0
@@ -390,20 +456,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
         // let frmBgMenu = _viewOverlayMenu.frame
         // bgView_Menu.frame = CGRect(x: 0, y: -frmBgMenu.height , width: frmBgMenu.width, height: frmBgMenu.height)
         
+        
+        bgView_Detail.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH_min)
+        mapView.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH)
+        
+        
+        
+        // ---- Type Menu
+        
         bgView_Menu.frame = CGRect(x: 0, y: -_vH_min, width: self._vW, height: _vH_min)
         bgView_Menu.isHidden = true
         bgView_Menu.alpha = 0
         
-        _viewMenu.frame = CGRect(x: 8, y: 10, width: _vW - 16, height: _vH_min - 8)
+        //_viewMenu.frame = CGRect(x: 8, y: 10, width: _vW - 16, height: _vH_min - 8)
         _viewMenu.backgroundColor = UIColor.white
         
         _viewArrowMenu.frame = CGRect(x: 21, y: 5, width: 20, height: 20)
         _viewArrowMenu.rotate(angle: 45)
         _viewArrowMenu.backgroundColor = UIColor.white
         
-        bgView_Detail.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH_min)
-        mapView.frame = CGRect(x: 0, y: 0, width: self._vW, height: _vH)
         
+        
+        // ---- Sort Menu
+        
+        bgView_MenuSort.frame = CGRect(x: 0, y: -_vH_min, width: self._vW, height: _vH_min)
+        bgView_MenuSort.isHidden = true
+        bgView_MenuSort.alpha = 0
+        
+        _viewMenu_Sort.backgroundColor = UIColor.white
+        
+        _viewArrowMenu_Sort.frame = CGRect(x: 60, y: 5, width: 20, height: 20)
+        _viewArrowMenu_Sort.rotate(angle: 45)
+        _viewArrowMenu_Sort.backgroundColor = UIColor.white
     }
     
     
@@ -492,11 +576,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
                         if _lists.count > 0 {
                             self.dataLists = _lists
                             
-                            for jsonItem in self.dataLists.arrayValue {
+                            for (index, jsonItem) in self.dataLists.arrayValue.enumerated() {
                                 //let jsonItem = JSON(item)
                                 //let jsonItem = item
-//                                print("jsonItem ---- > > >")
-//                                print(jsonItem)
+                                //                                print("jsonItem ---- > > >")
+                                print(index)
+                                print(jsonItem)
+                                print("------")
                                 
                                 guard let urlLogoImage:String = String(jsonItem["picture"]["data"]["url"].stringValue) else {
                                     return
@@ -612,7 +698,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
 //            self.mapView.clear()
 //        }
         
-
+        //var params = Parameters()
         
         let params:Parameters =  [
             "type":"place",
@@ -871,6 +957,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDe
     }
     
     
+    @IBAction func btnSortDistane_Click(_ sender: AnyObject) {
+        
+        /////////////////// SORT /////////////////////
+        page = 0
+        _tbDataList.showsInfiniteScrolling = true
+        SVProgressHUD.show()
+        refreshData()
+        btnTopLeftClick2(sender: UIButton())
+        
+    }
+    @IBAction func btnSortPopular_Click(_ sender: AnyObject) {
+        
+        /////////////////// SORT /////////////////////
+        page = 0
+        _tbDataList.showsInfiniteScrolling = true
+        SVProgressHUD.show()
+        refreshData()
+        btnTopLeftClick2(sender: UIButton())
+        
+    }
     
     
     
